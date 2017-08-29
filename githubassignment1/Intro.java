@@ -1,4 +1,3 @@
-package apcs.githubassignment1;
 /**
  * Solutions to 1-4 of the GitHub Assignment 1
  * @author anuvabanwasi
