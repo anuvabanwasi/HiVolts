@@ -57,7 +57,9 @@ public class Flag extends JPanel {
 		double unionHeight = FlagUtil.getUnionHeight(height);
 
 		// Paint Union
-		Union u = new Union(Color.BLUE, 0, 0, unionWidth, unionHeight);
+		Color blue = new Color(0, 40, 104);
+		
+		Union u = new Union(blue, 0, 0, unionWidth, unionHeight);
 		u.paintUnion(g);
 	}
 
@@ -124,6 +126,8 @@ public class Flag extends JPanel {
 
 		// radius of each star as a ratio of height of flag
 		double radius = FlagUtil.getRadius(height);
+		
+		Color white = new Color(255,255,255);
 
 		for (int row = 0; row < 5; row++) {
 			for (int col = 0; col < 6; col++) {
@@ -133,7 +137,7 @@ public class Flag extends JPanel {
 				// Second star is at centerX + 2 * spaceX, centerY + 2 * spaceY i.e the x coordinate of center of the second star is centerX of first star + 2 times the horizontal space between stars, the y-coordinate of center of second star is centerY of first star + 2 times the vertical space between stars
 				
 				// Paint star of radius at desired x, y
-				Star s = new Star(Color.WHITE, centerX + col * 2 * spaceX, centerY + row * 2 * spaceY, radius);
+				Star s = new Star(white, centerX + col * 2 * spaceX, centerY + row * 2 * spaceY, radius);
 				s.paintStar(g2);
 			}
 		}
@@ -146,7 +150,7 @@ public class Flag extends JPanel {
 				// Second star is at centerX + spaceX + 2 * spaceX, i.e the center of the second star is x coordinate of center of first star + 2 times the horizontal space between stars, the y-coordinate of center of second star is centerY of first star + 2 times the vertical space between stars
 				
 				// Paint star of radius at desired x, y
-				Star s = new Star(Color.WHITE, centerX + spaceX + col * 2 * spaceX, centerY + spaceY + row * 2 * spaceY,
+				Star s = new Star(white, centerX + spaceX + col * 2 * spaceX, centerY + spaceY + row * 2 * spaceY,
 						radius);
 				s.paintStar(g2);
 			}

@@ -126,6 +126,9 @@ public class FlagUtil {
 	 * @return color of stripe
 	 */
 	static Color getStripeColor(int i) {
-		return (i % 2 == 0 ? Color.red :Color.white );
+		Color red = new Color(191, 10, 48);
+		Color white = new Color(255,255,255);
+		
+		return (i % 2 == 0 ? red :white );
 	}
 }
