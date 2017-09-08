@@ -1,4 +1,4 @@
-﻿Introduction
+Introduction
 
 
 The objective of this project is to design and implement an application that displays the US flag to scale with dimensions based on the US flag specifications, http://www.usflag.org/flag.specs.html. The application is built using the Java’s graphics libraries such as AWT and Swing (Java docs can be found at https://docs.oracle.com/javase/8/docs/api/ ). Since it is a Java application the project can be executed by running the executable jar file (If the computer supports Java, the application can be run by downloading the jar file by using the command line). To resize the flag hover on the bottom right of the frame and drag it diagonally using a mouse or trackpad.
@@ -52,4 +52,4 @@ I learned a lot from this project since I was able to discover how the java.awt.
 Acknowledgements
 
 
-I would like to thank Mr. Kuszmaul for encouraging us to start planning the project ahead of time so we could work on it in manageable chunks. I would like to thank my coding partner Elaine for brainstorming ideas with me. I also would like to thank my 7 year old younger brother who was always happy to try out my application by resizing the frame and counting the stars and stripes and for asking me questions like, “Why does the US Flag has 50 stars and 13 stripes?”
+I would like to thank Mr. Kuszmaul for encouraging us to start planning the project ahead of time so we could work on it in manageable chunks. I would like to thank my coding partner Elaine for brainstorming ideas with me. I also would like to thank my 7 year old younger brother who was always happy to try out my application by resizing the frame and counting the stars and stripes and for asking me questions like, “Why does the US Flag have 50 stars and 13 stripes?”
