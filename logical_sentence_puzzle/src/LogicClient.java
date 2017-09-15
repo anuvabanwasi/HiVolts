@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
@@ -41,9 +42,9 @@ public class LogicClient {
 
 		//System.out.println("Legal: " + legal("a&(b|c)"));
 
-		System.out.println("Find Match: " + findMatch("a&(b|c)", 0));
+		//System.out.println("Find Match: " + findMatch4("a&(b|c)", 0));
 		
-		//System.out.println("Find Match: " + findMatch2("a&(b&(c&d))", 1));
+		System.out.println("Find Match: " + findMatch("(a&(b&c))|(c&d)", 1));
 		
 		System.out.println("Truth Table");
 		truthTable(new String[] { "p", "q" });
@@ -78,38 +79,6 @@ public class LogicClient {
 		// Concatenate the characters which are not '(' or ')'
 			return str.charAt(0) + findMatch(str.substring(1), i);
 	} 
-
-	/**
-	 * Finds the string at specified depth without parenthesis
-	 * For example, 
-	 * In the expression string (a(b(c))), findMatch("(a|b)&(c|d)", 0) returns a|b&c|d
-	 * In the expression string (a(b(c))), findMatch("(b|c)", 0) returns b|c
-	 * @param str String containing expression with nested parenthesis
-	 * @param j counter to signal depth at which to remove parenthesis
-	 * @return String String representing input string without parenthesis
-	 */
-	public static String findMatch2(String str, int depth) {
-		return findMatch3(str, depth, 0);
-	} 
-	
-	private static String findMatch3(String str, int depth, int i ) {
-		System.out.println("Str : " + str + " i: " + i);
-		
-		if(str.length() == 0)
-			return "error";
-		
-		if(i == depth) {
-			//System.out.println("returning " + str.substring(0, str.length()-i));
-			return findMatch(str.substring(0, str.length()-i),  0);
-		}
-		
-		else if (str.charAt(0) == '(')
-			return findMatch3(str.substring(1), depth, ++i);
-		else if (str.charAt(0) == ')')
-			return findMatch3(str.substring(1), depth, --i);
-		else
-			return findMatch3(str.substring(1), depth, i);
-	}
 	
 	/**
 	 * Generates truth table for specified propositional constants
