@@ -25,7 +25,7 @@ public class LegalSentence {
 		else if(simpleSentence(s)) 
 			return true; 
 		
-		// if string contains a string
+		// if string contains a '('
 		else if(s.contains("(")){
 			String fm = LogicClient.findMatch(s, 0);
 			if(fm.equalsIgnoreCase("error"))
