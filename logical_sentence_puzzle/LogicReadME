@@ -47,7 +47,7 @@ LegalSentence.java - This class checks if a given logical expression is a legal 
 LogicClient.java - This class is a client representing usage of the above classes. In addition, it has the following methods.
 	1. legal(String s) - This method takes in a string representing a logical expression and determines whether the string is a legal expression. For example, "a&b" is a valid logical expression where as "a&" is not a valid logical expression.
 
-	2. findMatch(String s, int lr) - This method takes in a string and returns a logical expression based on the depth parameter lr. First validates if its a valid string by finding if all parenthesis (if it exists) have a matching paranthesis. If it is a valid string then depending on the depth parameter it returns the appropriate level of logical expression. For example findMatch("(a&(b&(c&d))", 0) returns a&b&c&d,  findMatch("(a&(b&(c&d))", 1) returns b&c&d, findMatch("(a&(b&(c&d))", 2) returns c&d. 
+	2. findMatch(String s, int i) - This method takes in a string and returns a logical expression. Since the logical expressions can be within parenthesis the findMatch method needs to strip all the parenthesis and return the final logical expression. If the method finds that the number of open and close parenthesis do match it returns an error. In order to strip all the open and close parenthesis findMatch traverses the input String character by character. When findMatch finds an open parenthesis character it calls findMatch with the remaining substring (without the open parenthesis it encountered) and increments the depth. The depth is used to keep track of the level of nesting. When findMatch finds any other character other than open or close parenthesis it appends the previously traversed substring (that was so far stripped of any open or close parenthesis it had encountered) with the remaining substring. When findMatch finds a close parenthesis character it does the same thing as when it finds an open parenthesis except that is decrements the depth. The depth parameter is decremented since that is how the program keeps track of the nested expressions. When the length of the substring is 0 and if the depth is 0 that means its done traversing the String and it returns the String with the parenthesis stripped. If the length of the substring is 0 but the the depth is not 0 yes it means that there one or more non-matching parenthesis and it returns an error.
 
 	3. truthTable(String[] pc) - This method takes in an array of string representing propositional constants and prints out a truth table showing all of the possible truth assignments for the proposition constants.
 
@@ -98,6 +98,12 @@ F	F	T
 
 The program takes simple or compound statement and implements negation, conjunction logic, disjunction, implication and biconditional logic. Also given that the assignment is to design a logical statement puzzle, the program is designed to implement Evaluation (process of determining the truth values of compound sentences sentences given a truth assignment for the truth values of proposition constants). The program does not implement Satisfaction which is the opposite of Evaluation. Since Satisfaction is the opposite of Evaluation I should be able to modify my program to implement Satisfaction in future.
 
+
+					Assumptions
+————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+1) The logical operators Not, And, Or, Implication and Biconditional supported by LegalSentence class assumes the following symbols: ~, &, |, => and <=> respectively.
+2) The input string could have blank characters but my program does not attempt to remove the blank characters in the input string (if any). I intend to do that at a later time.
 
 					Learnings
 ————————————————————————————————————————————————————————————————————————————————————————————————————————————
