@@ -39,37 +39,43 @@ public class LogicClient {
 
 		System.out.println("Evaluate: "  + l5.evaluate(ta));
 
-		System.out.println("Legal: " + legal("a&(b|c)"));
+		//System.out.println("Legal: " + legal("a&(b|c)"));
 
 		System.out.println("Find Match: " + findMatch("a&(b|c)", 0));
 		
-		System.out.println("Find Match: " + findMatch2("a&(b&(c&d))&f", 1));
+		//System.out.println("Find Match: " + findMatch2("a&(b&(c&d))", 1));
 		
 		System.out.println("Truth Table");
 		truthTable(new String[] { "p", "q" });
 	}
 
 	/**
-	 * Finds the string at specified depth without parenthesis
-	 * For example, 
-	 * In the expression string (a(b(c))), findMatch("(a|b)&(c|d)", 0) returns a|b&c|d
-	 * In the expression string (a(b(c))), findMatch("(b|c)", 0) returns b|c
-	 * @param str String containing expression with nested parenthesis
-	 * @param j counter to signal depth at which to remove parenthesis
-	 * @return String String representing input string without parenthesis
+	 * Finds the string embedded in matching parenthesis, the string returned is without nested parenthesis
+	 * For example, in the example, findMatch("(b|c)", 0) returns b|c
+	 * @param str String containing logical expression with nested parenthesis
+	 * @param i integer depth incremented each time ( is encountered. Helps check that the number of '(' is equal to the number of ')' 
+	 * @return String representing input string without parenthesis
 	 */
 	public static String findMatch(String str, int i) {
+		System.out.println("Str : " + str + " i: " + i);
+
 		if(str.length() == 0) {
+			// Number of '(' is equal to the number of ')'
 			if(i == 0)
 				return str;
 			else
 				return "error";
 		}
+		// Each time ( is encountered, increment i - the number of '(' seen
 		else if (str.charAt(0) == '(')
 			return findMatch(str.substring(1), ++i);
+		
+		// Each time ) is encountered, decrement i - the number of '(' seen
 		else if (str.charAt(0) == ')')
 			return findMatch(str.substring(1), --i);
 		else
+			
+		// Concatenate the characters which are not '(' or ')'
 			return str.charAt(0) + findMatch(str.substring(1), i);
 	} 
 
