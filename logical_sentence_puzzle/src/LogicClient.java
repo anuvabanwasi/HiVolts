@@ -1,8 +1,6 @@
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Stack;
 
 /**
  * Client program to test logical sentence puzzle
@@ -94,7 +92,6 @@ public class LogicClient {
 		for (int i = 0; i < pc.length; i++) {
 			pcList.add("~" + pc[i].trim());
 		}
-
 
 		int n = pc.length;
 		// For n proposition constants, there are 2^n rows in the truth table. Each row represent a number from 0 .. 2^n
