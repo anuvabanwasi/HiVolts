@@ -40,11 +40,9 @@ public class LogicClient {
 
 		System.out.println("Evaluate: "  + l5.evaluate(ta));
 
-		//System.out.println("Legal: " + legal("a&(b|c)"));
-
-		//System.out.println("Find Match: " + findMatch4("a&(b|c)", 0));
+		System.out.println("Legal: " + legal("a&(b|c)"));
 		
-		System.out.println("Find Match: " + findMatch("(a&(b&c))|(c&d)", 1));
+		System.out.println("Find Match: " + findMatch("(a&(b&c))|(c&d)", 0));
 		
 		System.out.println("Truth Table");
 		truthTable(new String[] { "p", "q" });
@@ -58,7 +56,7 @@ public class LogicClient {
 	 * @return String representing input string without parenthesis
 	 */
 	public static String findMatch(String str, int i) {
-		System.out.println("Str : " + str + " i: " + i);
+		//System.out.println("Str : " + str + " i: " + i);
 
 		if(str.length() == 0) {
 			// Number of '(' is equal to the number of ')'
