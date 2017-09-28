@@ -36,6 +36,7 @@ public class Display extends JComponent implements KeyListener {
 	private final int DISPLAY_HEIGHT;
 	
 	private Cell smiley;
+	private Cell mho;
 
 	public Display(int width, int height) {
 		DISPLAY_WIDTH = width;
@@ -60,14 +61,32 @@ public class Display extends JComponent implements KeyListener {
 		}
 
 		// Set Exterior Electric Fences
+		for(int i = 0; i < 12; i++) {
+			cells[0][i].set("fence");
+			cells[i][0].set("fence");
+			cells[11][i].set("fence");
+			cells[i][11].set("fence");
+		}
 
 		// Set Smiley Cell
 		initSmiley();
 		// Set Mho Cells
+		for(int i = 0; i < 12; i++) {
+			initMho();
+		}
 		
 		// Set Interior Electric Fences
 		
 	}
+
+	private void initMho() {
+		int randomX = ThreadLocalRandom.current().nextInt(1, ROWS - 1);
+		int randomY = ThreadLocalRandom.current().nextInt(1, COLS - 1);
+
+		cells[randomX][randomY].set("mho");
+		mho = cells[randomX][randomY];
+	}
+
 
 	private void initSmiley() {
 		int randomX = ThreadLocalRandom.current().nextInt(1, ROWS - 1);
@@ -76,6 +95,8 @@ public class Display extends JComponent implements KeyListener {
 		cells[randomX][randomY].set("smiley");
 		smiley = cells[randomX][randomY];
 	}
+
+
 	private void moveSmiley(KeyEvent e) {
 		char c = e.getKeyChar();
 
