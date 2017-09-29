@@ -1,6 +1,9 @@
 import java.awt.*;
 
-public class Fence extends Cell {
+/**
+ * @author Quintin Dwight
+ */
+public class Fence extends AbstractCell {
 
     public Fence(int x, int y) {
 
@@ -11,11 +14,11 @@ public class Fence extends Cell {
     public void draw(final int x_offset, final int y_offset, final int width, final int height, Graphics g) {
 
         final int
-            x = x_offset + 1 + (myY * (width  + 1)),
-            y = y_offset + 1 + (myX * (height + 1));
+            top_x = x_offset + 1 + (y * (width  + 1)),
+            top_y = y_offset + 1 + (x * (height + 1));
 
         g.setColor(Color.YELLOW);
-        g.fillRect(x, y, width, height);
+        g.fillRect(top_x, top_y, width, height);
     }
 
     @Override

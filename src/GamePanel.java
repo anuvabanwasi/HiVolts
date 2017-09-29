@@ -1,6 +1,3 @@
-
-
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
@@ -16,7 +13,7 @@ import javax.swing.JComponent;
 // code in init() to attach those interfaces to the JComponent.
 
 /**
- *
+ * @author Anuva Banwasi
  */
 public class GamePanel extends JComponent implements KeyListener {
 
@@ -24,9 +21,9 @@ public class GamePanel extends JComponent implements KeyListener {
 	public static final int
 		ROWS = 12,
 		COLS = 12;
-	public static Cell[][] cells = new Cell[ROWS][COLS];
+	public static AbstractCell[][] cells = new AbstractCell[ROWS][COLS];
 	private static final int
-		NUM_OF_MHOS = 3,
+		NUM_OF_MHOS = 12,
 		NUM_OF_INTERIOR_FENCES = 2;
 	private final int
 		X_GRID_OFFSET = 25, // 25 pixels from left,
@@ -37,9 +34,9 @@ public class GamePanel extends JComponent implements KeyListener {
 	// Note that a final field can be initialized in constructor
 	private final int DISPLAY_WIDTH, DISPLAY_HEIGHT;
 	
-	private Cell smiley, mho;
+	private AbstractCell smiley;
 
-	public GamePanel(int width, int height) {
+	public GamePanel(final int width, final int height) {
 
 		DISPLAY_WIDTH = width;
 		DISPLAY_HEIGHT = height;
@@ -58,12 +55,6 @@ public class GamePanel extends JComponent implements KeyListener {
 
 	private void initCells(boolean showInitial) {
 
-		for (int row = 0; row < ROWS; row++) {
-			for (int col = 0; col < COLS; col++) {
-				cells[row][col] = new Cell(row, col);
-			}
-		}
-
 		// Set Exterior Electric Fences
 		for (int i = 0; i < 12; i++) {
 			cells[ 0][ i] = new Fence(0 , i );
@@ -72,10 +63,10 @@ public class GamePanel extends JComponent implements KeyListener {
 			cells[ i][11] = new Fence(i , 11);
 		}
 
-		// Set Smiley Cell
+		// Set Smiley AbstractCell
 		initSmiley();
 		// Set Mho Cells
-		for(int i = 0; i < 12; i++) {
+		for(int i = 0; i < NUM_OF_MHOS; i++) {
 			initMho();
 		}
 		
@@ -85,20 +76,19 @@ public class GamePanel extends JComponent implements KeyListener {
 
 	private void initMho() {
 
-		int randomX = ThreadLocalRandom.current().nextInt(1, ROWS - 1);
-		int randomY = ThreadLocalRandom.current().nextInt(1, COLS - 1);
+		int randomX = ThreadLocalRandom.current().nextInt(1, ROWS - 1),
+			randomY = ThreadLocalRandom.current().nextInt(1, COLS - 1);
 
 		cells[randomX][randomY] = new Mho(randomX, randomY);
-		mho = cells[randomX][randomY];
 	}
 
 
 	private void initSmiley() {
 
-		int randomX = ThreadLocalRandom.current().nextInt(1, ROWS - 1);
-		int randomY = ThreadLocalRandom.current().nextInt(1, COLS - 1);
+		int randomX = ThreadLocalRandom.current().nextInt(1, ROWS - 1),
+			randomY = ThreadLocalRandom.current().nextInt(1, COLS - 1);
 
-		cells[randomX][randomY] = new Player(randomX, randomY);
+		cells[randomX][randomY] = new Smiley(randomX, randomY);
 		smiley = cells[randomX][randomY];
 	}
 
@@ -153,13 +143,13 @@ public class GamePanel extends JComponent implements KeyListener {
 			}
 			break;
 
-//		case 'S':
-//		case 's':
-//			System.out.println("s pressed");
-//			moveSmiley(row, col);
-//			// System.out.println("smiley " + smiley.getX() + " : " +
-//			// smiley.getY());
-//			break;
+		case 'S':
+		case 's':
+			System.out.println("s pressed");
+			moveSmiley(row, col);
+			// System.out.println("smiley " + smiley.getX() + " : " +
+			// smiley.getY());
+			break;
 
 		case 'D':
 		case 'd':
@@ -209,13 +199,10 @@ public class GamePanel extends JComponent implements KeyListener {
 
 	private void moveSmiley(int x, int y) {
 
-		// System.out.println("Smiley new position : " + x + " , " + y);
-		if (!cells[x][y].isSolid()) {
-			smiley.set("empty");
-			cells[x][y].set("smiley");
-			smiley = cells[x][y];
-			smiley.set("smiley");
-
+		if (cells[x][y] == null) {
+			cells[smiley.getX()][smiley.getY()] = null;
+			smiley.move(x, y);
+			cells[x][y] = smiley;
 		} else {
 			System.out.println("Should not be here!");
 		}
@@ -238,24 +225,39 @@ public class GamePanel extends JComponent implements KeyListener {
 		// Have each cell draw itself
 		for (int row = 0; row < ROWS; row++) {
 			for (int col = 0; col < COLS; col++) {
+				AbstractCell cell = cells[row][col];
 				// The cell cannot know for certain the offsets nor the height
 				// and width; it has been set up to know its own position, so
 				// that need not be passed as an argument to the draw method
-				cells[row][col].draw(X_GRID_OFFSET, Y_GRID_OFFSET, CELL_WIDTH, CELL_HEIGHT, g);
+				if (cell != null)
+					cell.draw(X_GRID_OFFSET, Y_GRID_OFFSET, CELL_WIDTH, CELL_HEIGHT, g);
 			}
 		}
 	}
 
 	private void drawGrid(Graphics g) {
 
+		g.setColor(Color.DARK_GRAY);
+		g.fillRect(X_GRID_OFFSET, Y_GRID_OFFSET, (CELL_WIDTH+1)*ROWS, (CELL_HEIGHT+1)*COLS);
+
+		g.setColor(Color.BLACK);
+
+		// Draw rows
 		for (int row = 0; row <= ROWS; row++) {
-			g.drawLine(X_GRID_OFFSET, Y_GRID_OFFSET + (row * (CELL_HEIGHT + 1)),
-					X_GRID_OFFSET + COLS * (CELL_WIDTH + 1), Y_GRID_OFFSET + (row * (CELL_HEIGHT + 1)));
+			g.drawLine(
+				X_GRID_OFFSET,
+			Y_GRID_OFFSET + (row * (CELL_HEIGHT + 1)),
+			X_GRID_OFFSET + COLS * (CELL_WIDTH  + 1),
+			Y_GRID_OFFSET + (row * (CELL_HEIGHT + 1)));
 		}
 
+		// Draw columns
 		for (int col = 0; col <= COLS; col++) {
-			g.drawLine(X_GRID_OFFSET + (col * (CELL_WIDTH + 1)), Y_GRID_OFFSET,
-					X_GRID_OFFSET + (col * (CELL_WIDTH + 1)), Y_GRID_OFFSET + ROWS * (CELL_HEIGHT + 1));
+			g.drawLine(
+			X_GRID_OFFSET + (col * (CELL_WIDTH + 1)),
+				Y_GRID_OFFSET,
+			X_GRID_OFFSET + (col * (CELL_WIDTH  + 1)),
+			Y_GRID_OFFSET + ROWS * (CELL_HEIGHT + 1));
 		}
 	}
 	

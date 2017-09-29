@@ -3,9 +3,9 @@ import java.awt.*;
 /**
  * @author Quintin Dwight
  */
-public class Mho extends AbstractCell {
+public class Smiley extends AbstractCell {
 
-    public Mho(int x, int y) {
+    public Smiley(int x, int y) {
 
         super(x, y);
     }
@@ -17,12 +17,12 @@ public class Mho extends AbstractCell {
             top_x = x_offset + 1 + (y * (width  + 1)),
             top_y = y_offset + 1 + (x * (height + 1));
 
-        g.setColor(Color.RED);
+        g.setColor(Color.CYAN);
         g.fillRect(top_x, top_y, width, height);
     }
 
     @Override
     public boolean isSolid() {
-        return true;
+        return false;
     }
 }

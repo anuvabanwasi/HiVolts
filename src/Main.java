@@ -1,5 +1,8 @@
 import javax.swing.JFrame;
 
+/**
+ * @author Anuva Banwasi
+ */
 public class Main {
 
 	final static int WINDOW_WIDTH = 500, WINDOW_HEIGHT = 500;
