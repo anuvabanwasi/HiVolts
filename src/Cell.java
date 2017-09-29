@@ -1,20 +1,20 @@
-
-
-
 import java.awt.Color;
 import java.awt.Graphics;
+
 public class Cell {
-	public static final int COLS = 12;
-	public static final int ROWS = 12;
-	private String type;	//smiley, mho, fence, empty
+
+	public static final int COLS = 12, ROWS = 12;
+	private String type;   //smiley, mho, fence, empty
 	private Color myColor; // Based on smiley/mho/fence rules
-	private int myX, myY; // x,y position on grid
+	private int myX, myY;  // x,y position on grid
 
 	public Cell(int x, int y) {
+
 		this(x, y, false, Color.WHITE, "empty");
 	}
 
 	public Cell(int row, int col, boolean alive, Color color, String type) {
+
 		myColor = color;
 		myX = row;
 		myY = col;
@@ -35,6 +35,7 @@ public class Cell {
 	}
 	
 	public void set(String type) {
+
 		this.setType(type);
 		if(type.equals("mho"))
 			this.setColor(Color.cyan);
@@ -51,6 +52,7 @@ public class Cell {
 	}
 
 	public void setColor(Color color) {
+
 		myColor = color;
 	}
 
@@ -65,7 +67,7 @@ public class Cell {
 	public int getX() {
 		return myX;
 	}
-	
+
 	public int getY() {
 		return myY;
 	}

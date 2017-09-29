@@ -1,22 +1,24 @@
-
-
 import javax.swing.JFrame;
 
 public class Main {
 
+	final static int DISPLAY_WIDTH = 500, DISPLAY_HEIGHT = 500;
+
 	public static void main(String[] args) {
+
 		// Bring up a JFrame with squares to represent the cells
-		final int DISPLAY_WIDTH = 500;
-		final int DISPLAY_HEIGHT = 500;
-		JFrame f = new JFrame();
+		JFrame f = new JFrame("HiVolts");
+
 		f.setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
-		Display display = new Display(DISPLAY_WIDTH, DISPLAY_HEIGHT);
-		f.setLayout(null);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setTitle("HiVolts");
-		f.add(display);
+		f.setLayout(null);
+
+		GamePanel panel = new GamePanel(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+		f.add(panel);
+
 		f.setVisible(true);
+
 		f.requestFocusInWindow();
-		display.requestFocusInWindow();
+		panel.requestFocusInWindow();
 	}
 }

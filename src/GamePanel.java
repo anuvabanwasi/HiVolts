@@ -6,8 +6,6 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.JComponent;
@@ -17,34 +15,39 @@ import javax.swing.JComponent;
 // MousMotionListener interfaces are implemented and there is additional
 // code in init() to attach those interfaces to the JComponent.
 
-public class Display extends JComponent implements KeyListener {
+/**
+ *
+ */
+public class GamePanel extends JComponent implements KeyListener {
 
 	private static final long serialVersionUID = 1L;
-	public static final int ROWS = 12;
-	public static final int COLS = 12;
+	public static final int
+		ROWS = 12,
+		COLS = 12;
 	public static Cell[][] cells = new Cell[ROWS][COLS];
-	private static final int NUM_OF_MHOS = 3;
-	private static final int NUM_OF_INTERIOR_FENCES = 2;
-	private final int X_GRID_OFFSET = 25; // 25 pixels from left
-	private final int Y_GRID_OFFSET = 40; // 40 pixels from top
+	private static final int
+		NUM_OF_MHOS = 3,
+		NUM_OF_INTERIOR_FENCES = 2;
+	private final int
+		X_GRID_OFFSET = 25, // 25 pixels from left,
+		Y_GRID_OFFSET = 40; // 40 pixels from top
 
-	private final int CELL_WIDTH = 28;
-	private final int CELL_HEIGHT = 28;
+	private final int CELL_WIDTH = 28, CELL_HEIGHT = 28;
 
 	// Note that a final field can be initialized in constructor
-	private final int DISPLAY_WIDTH;
-	private final int DISPLAY_HEIGHT;
+	private final int DISPLAY_WIDTH, DISPLAY_HEIGHT;
 	
-	private Cell smiley;
-	private Cell mho;
+	private Cell smiley, mho;
 
-	public Display(int width, int height) {
+	public GamePanel(int width, int height) {
+
 		DISPLAY_WIDTH = width;
 		DISPLAY_HEIGHT = height;
 		init();
 	}
 
-	public void init() {
+	private void init() {
+
 		setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
 		initCells(true);
 
@@ -53,7 +56,8 @@ public class Display extends JComponent implements KeyListener {
 		repaint();
 	}
 
-	public void initCells(boolean showInitial) {
+	private void initCells(boolean showInitial) {
+
 		for (int row = 0; row < ROWS; row++) {
 			for (int col = 0; col < COLS; col++) {
 				cells[row][col] = new Cell(row, col);
@@ -80,6 +84,7 @@ public class Display extends JComponent implements KeyListener {
 	}
 
 	private void initMho() {
+
 		int randomX = ThreadLocalRandom.current().nextInt(1, ROWS - 1);
 		int randomY = ThreadLocalRandom.current().nextInt(1, COLS - 1);
 
@@ -89,6 +94,7 @@ public class Display extends JComponent implements KeyListener {
 
 
 	private void initSmiley() {
+
 		int randomX = ThreadLocalRandom.current().nextInt(1, ROWS - 1);
 		int randomY = ThreadLocalRandom.current().nextInt(1, COLS - 1);
 
@@ -98,10 +104,10 @@ public class Display extends JComponent implements KeyListener {
 
 
 	private void moveSmiley(KeyEvent e) {
+
 		char c = e.getKeyChar();
 
-		int row = smiley.getX();
-		int col = smiley.getY();
+		int row = smiley.getX(), col = smiley.getY();
 
 		switch (c) {
 		case 'Q':
@@ -216,7 +222,8 @@ public class Display extends JComponent implements KeyListener {
 
 		repaint();
 	}
-	
+
+	@Override
 	public void paintComponent(Graphics g) {
 
 		g.setColor(Color.BLACK);
@@ -226,7 +233,8 @@ public class Display extends JComponent implements KeyListener {
 		repaint();
 	}
 
-	void drawCells(Graphics g) {
+	private void drawCells(Graphics g) {
+
 		// Have each cell draw itself
 		for (int row = 0; row < ROWS; row++) {
 			for (int col = 0; col < COLS; col++) {
@@ -238,11 +246,13 @@ public class Display extends JComponent implements KeyListener {
 		}
 	}
 
-	void drawGrid(Graphics g) {
+	private void drawGrid(Graphics g) {
+
 		for (int row = 0; row <= ROWS; row++) {
 			g.drawLine(X_GRID_OFFSET, Y_GRID_OFFSET + (row * (CELL_HEIGHT + 1)),
 					X_GRID_OFFSET + COLS * (CELL_WIDTH + 1), Y_GRID_OFFSET + (row * (CELL_HEIGHT + 1)));
 		}
+
 		for (int col = 0; col <= COLS; col++) {
 			g.drawLine(X_GRID_OFFSET + (col * (CELL_WIDTH + 1)), Y_GRID_OFFSET,
 					X_GRID_OFFSET + (col * (CELL_WIDTH + 1)), Y_GRID_OFFSET + ROWS * (CELL_HEIGHT + 1));
