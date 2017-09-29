@@ -65,11 +65,11 @@ public class GamePanel extends JComponent implements KeyListener {
 		}
 
 		// Set Exterior Electric Fences
-		for(int i = 0; i < 12; i++) {
-			cells[0][i].set("fence");
-			cells[i][0].set("fence");
-			cells[11][i].set("fence");
-			cells[i][11].set("fence");
+		for (int i = 0; i < 12; i++) {
+			cells[ 0][ i] = new Fence(0 , i );
+			cells[ i][ 0] = new Fence(i , 0 );
+			cells[11][ i] = new Fence(11, i );
+			cells[ i][11] = new Fence(i , 11);
 		}
 
 		// Set Smiley Cell
@@ -88,7 +88,7 @@ public class GamePanel extends JComponent implements KeyListener {
 		int randomX = ThreadLocalRandom.current().nextInt(1, ROWS - 1);
 		int randomY = ThreadLocalRandom.current().nextInt(1, COLS - 1);
 
-		cells[randomX][randomY].set("mho");
+		cells[randomX][randomY] = new Mho(randomX, randomY);
 		mho = cells[randomX][randomY];
 	}
 
@@ -98,7 +98,7 @@ public class GamePanel extends JComponent implements KeyListener {
 		int randomX = ThreadLocalRandom.current().nextInt(1, ROWS - 1);
 		int randomY = ThreadLocalRandom.current().nextInt(1, COLS - 1);
 
-		cells[randomX][randomY].set("smiley");
+		cells[randomX][randomY] = new Player(randomX, randomY);
 		smiley = cells[randomX][randomY];
 	}
 
@@ -153,13 +153,13 @@ public class GamePanel extends JComponent implements KeyListener {
 			}
 			break;
 
-		case 'S':
-		case 's':
-			System.out.println("s pressed");
-			moveSmiley(row, col);
-			// System.out.println("smiley " + smiley.getX() + " : " +
-			// smiley.getY());
-			break;
+//		case 'S':
+//		case 's':
+//			System.out.println("s pressed");
+//			moveSmiley(row, col);
+//			// System.out.println("smiley " + smiley.getX() + " : " +
+//			// smiley.getY());
+//			break;
 
 		case 'D':
 		case 'd':
@@ -210,7 +210,7 @@ public class GamePanel extends JComponent implements KeyListener {
 	private void moveSmiley(int x, int y) {
 
 		// System.out.println("Smiley new position : " + x + " , " + y);
-		if (cells[x][y].getType().equals("empty")) {
+		if (!cells[x][y].isSolid()) {
 			smiley.set("empty");
 			cells[x][y].set("smiley");
 			smiley = cells[x][y];
