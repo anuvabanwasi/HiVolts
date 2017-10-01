@@ -1,11 +1,12 @@
 import javax.swing.JFrame;
+import java.awt.*;
 
 /**
  * @author Anuva Banwasi
  */
 public class Main {
 
-	final static int WINDOW_WIDTH = 500, WINDOW_HEIGHT = 500;
+	final static int WINDOW_WIDTH = 870, WINDOW_HEIGHT = 900;
 
 	public static void main(String[] args) {
 
@@ -14,6 +15,7 @@ public class Main {
 
 		f.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setBackground(Color.BLACK);
 		f.setLayout(null);
 
 		GamePanel panel = new GamePanel(WINDOW_WIDTH, WINDOW_HEIGHT);

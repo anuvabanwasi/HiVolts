@@ -1,5 +1,4 @@
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -25,11 +24,12 @@ public class GamePanel extends JComponent implements KeyListener {
 	private static final int
 		NUM_OF_MHOS = 12,
 		NUM_OF_INTERIOR_FENCES = 2;
-	private final int
-		X_GRID_OFFSET = 25, // 25 pixels from left,
-		Y_GRID_OFFSET = 40; // 40 pixels from top
+	private static final int
+		X_GRID_OFFSET = 20, // 25 pixels from left,
+		Y_GRID_OFFSET = 20; // 40 pixels from top
+	public static final int GRID_SPACING  = 8;
 
-	private final int CELL_WIDTH = 28, CELL_HEIGHT = 28;
+	private final int CELL_WIDTH = 60, CELL_HEIGHT = 60;
 
 	// Note that a final field can be initialized in constructor
 	private final int DISPLAY_WIDTH, DISPLAY_HEIGHT;
@@ -213,14 +213,18 @@ public class GamePanel extends JComponent implements KeyListener {
 	@Override
 	public void paintComponent(Graphics g) {
 
+		super.paintComponent(g);
+
+		Graphics2D g2 = (Graphics2D)g;
+
 		g.setColor(Color.BLACK);
-		drawGrid(g);
-		drawCells(g);
+		drawGrid(g2);
+		drawCells(g2);
 
 		repaint();
 	}
 
-	private void drawCells(Graphics g) {
+	private void drawCells(Graphics2D g) {
 
 		// Have each cell draw itself
 		for (int row = 0; row < ROWS; row++) {
@@ -235,10 +239,10 @@ public class GamePanel extends JComponent implements KeyListener {
 		}
 	}
 
-	private void drawGrid(Graphics g) {
+	private void drawGrid(Graphics2D g) {
 
-		g.setColor(Color.DARK_GRAY);
-		g.fillRect(X_GRID_OFFSET, Y_GRID_OFFSET, (CELL_WIDTH+1)*ROWS, (CELL_HEIGHT+1)*COLS);
+		g.setColor(Color.BLACK);
+		g.fillRect(X_GRID_OFFSET, Y_GRID_OFFSET, (CELL_WIDTH+GRID_SPACING)*ROWS, (CELL_HEIGHT+GRID_SPACING)*COLS);
 
 		g.setColor(Color.BLACK);
 
@@ -246,24 +250,25 @@ public class GamePanel extends JComponent implements KeyListener {
 		for (int row = 0; row <= ROWS; row++) {
 			g.drawLine(
 				X_GRID_OFFSET,
-			Y_GRID_OFFSET + (row * (CELL_HEIGHT + 1)),
-			X_GRID_OFFSET + COLS * (CELL_WIDTH  + 1),
-			Y_GRID_OFFSET + (row * (CELL_HEIGHT + 1)));
+			Y_GRID_OFFSET + (row * (CELL_HEIGHT + GRID_SPACING)),
+			X_GRID_OFFSET + COLS * (CELL_WIDTH  + GRID_SPACING),
+			Y_GRID_OFFSET + (row * (CELL_HEIGHT + GRID_SPACING)));
 		}
 
 		// Draw columns
 		for (int col = 0; col <= COLS; col++) {
 			g.drawLine(
-			X_GRID_OFFSET + (col * (CELL_WIDTH + 1)),
+			X_GRID_OFFSET + (col * (CELL_WIDTH + GRID_SPACING)),
 				Y_GRID_OFFSET,
-			X_GRID_OFFSET + (col * (CELL_WIDTH  + 1)),
-			Y_GRID_OFFSET + ROWS * (CELL_HEIGHT + 1));
+			X_GRID_OFFSET + (col * (CELL_WIDTH  + GRID_SPACING)),
+			Y_GRID_OFFSET + ROWS * (CELL_HEIGHT + GRID_SPACING));
 		}
 	}
 	
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+
 		moveSmiley(e);
 		
 		repaint();
