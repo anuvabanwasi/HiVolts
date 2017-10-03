@@ -3,9 +3,9 @@
  */
 public class Fence extends AbstractCell {
 
-    public Fence(int x, int y) {
+    public Fence(Coordinate position) {
 
-        super("Fence.png", x, y);
+        super("Fence.png", position);
     }
 
     @Override

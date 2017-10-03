@@ -7,9 +7,9 @@ public class Mho extends AbstractCell {
 
     BufferedImage image;
 
-    public Mho(int x, int y) {
+    public Mho(Coordinate position) {
 
-        super("Mho.png", x, y);
+        super("Mho.png", position);
     }
 
     @Override

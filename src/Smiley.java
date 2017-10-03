@@ -3,9 +3,9 @@
  */
 public class Smiley extends AbstractCell {
 
-    public Smiley(int x, int y) {
+    public Smiley(Coordinate position) {
 
-        super("Smiley.png", x, y);
+        super("Smiley.png", position);
     }
 
     @Override

@@ -1,7 +1,11 @@
+import sun.plugin.dom.core.CoreConstants;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import java.util.List;
+import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.JComponent;
@@ -20,7 +24,8 @@ public class GamePanel extends JComponent implements KeyListener {
 	public static final int
 		ROWS = 12,
 		COLS = 12;
-	public static AbstractCell[][] cells = new AbstractCell[ROWS][COLS];
+	public static List<AbstractCell> cells = new ArrayList<>();
+	public static List<Coordinate> emptyCoordinates = new ArrayList<>();
 	private static final int
 		NUM_OF_MHOS = 12,
 		NUM_OF_INTERIOR_FENCES = 2;
@@ -45,6 +50,12 @@ public class GamePanel extends JComponent implements KeyListener {
 
 	private void init() {
 
+		for (int x = 0; x < COLS; x++) {
+			for (int y = 0; y < ROWS; y++) {
+				emptyCoordinates.add(new Coordinate(x, y));
+			}
+		}
+
 		setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
 		initCells(true);
 
@@ -53,43 +64,73 @@ public class GamePanel extends JComponent implements KeyListener {
 		repaint();
 	}
 
-	private void initCells(boolean showInitial) {
+	private void initCells(final boolean showInitial) {
 
 		// Set Exterior Electric Fences
 		for (int i = 0; i < 12; i++) {
-			cells[ 0][ i] = new Fence(0 , i );
-			cells[ i][ 0] = new Fence(i , 0 );
-			cells[11][ i] = new Fence(11, i );
-			cells[ i][11] = new Fence(i , 11);
+			addCell(new Fence(new Coordinate(0, i)));
+			addCell(new Fence(new Coordinate(i, 0)));
+			addCell(new Fence(new Coordinate(11, i)));
+			addCell(new Fence(new Coordinate(i, 11)));
 		}
 
 		// Set Smiley AbstractCell
 		initSmiley();
+
 		// Set Mho Cells
-		for(int i = 0; i < NUM_OF_MHOS; i++) {
+		for (int i = 0; i < NUM_OF_MHOS; i++) {
 			initMho();
 		}
-		
+
+		for (int i = 0; i < 12; i++) {
+			initFences();
+		}
+
 		// Set Interior Electric Fences
 		
 	}
 
 	private void initMho() {
 
-		int randomX = ThreadLocalRandom.current().nextInt(1, ROWS - 1),
-			randomY = ThreadLocalRandom.current().nextInt(1, COLS - 1);
+		Coordinate coordinate = getRandomPosition();
 
-		cells[randomX][randomY] = new Mho(randomX, randomY);
+		addCell(new Mho(coordinate));
+	}
+
+
+	private void initFences() {
+
+		Coordinate coordinate = getRandomPosition();
+
+		addCell(new Fence(coordinate));
 	}
 
 
 	private void initSmiley() {
 
-		int randomX = ThreadLocalRandom.current().nextInt(1, ROWS - 1),
-			randomY = ThreadLocalRandom.current().nextInt(1, COLS - 1);
+		Coordinate coordinate = getRandomPosition();
 
-		cells[randomX][randomY] = new Smiley(randomX, randomY);
-		smiley = cells[randomX][randomY];
+		smiley = new Smiley(coordinate);
+		addCell(smiley);
+	}
+
+
+	private void addCell(AbstractCell cell) {
+
+		cells.add(cell);
+
+		Coordinate c1 = cell.position;
+		for (int i = 0; i < emptyCoordinates.size(); i++) {
+			Coordinate c2 = emptyCoordinates.get(i);
+			if (c1.x == c2.x && c1.y == c2.y) emptyCoordinates.remove(i);
+		}
+	}
+
+
+	private Coordinate getRandomPosition() {
+
+		final int randomIndex = ThreadLocalRandom.current().nextInt(1, cells.size());
+		return emptyCoordinates.get(randomIndex);
 	}
 
 
@@ -97,14 +138,14 @@ public class GamePanel extends JComponent implements KeyListener {
 
 		char c = e.getKeyChar();
 
-		int row = smiley.getX(), col = smiley.getY();
+		int row = smiley.position.x, col = smiley.position.y;
 
 		switch (c) {
 		case 'Q':
 		case 'q':
 			System.out.println("q pressed");
 			if (row > 0 && col > 0) {
-				moveSmiley(row - 1, col - 1);
+				moveSmiley(new Coordinate(row - 1, col - 1));
 				// System.out.println("smiley " + smiley.getX() + " : " +
 				// smiley.getY());
 
@@ -115,7 +156,7 @@ public class GamePanel extends JComponent implements KeyListener {
 		case 'w':
 			System.out.println("w pressed");
 			if (row > 0) {
-				moveSmiley(row - 1, col);
+				moveSmiley(new Coordinate(row, col - 1));
 				// System.out.println("smiley " + smiley.getX() + " : " +
 				// smiley.getY());
 			}
@@ -126,7 +167,7 @@ public class GamePanel extends JComponent implements KeyListener {
 		case 'e':
 			System.out.println("e pressed");
 			if (row > 0 && col < COLS - 1) {
-				moveSmiley(row - 1, col + 1);
+				moveSmiley(new Coordinate(row + 1, col - 1));
 				// System.out.println("smiley " + smiley.getX() + " : " +
 				// smiley.getY());
 			}
@@ -137,7 +178,7 @@ public class GamePanel extends JComponent implements KeyListener {
 		case 'a':
 			System.out.println("a pressed");
 			if (col > 0) {
-				moveSmiley(row, col - 1);
+				moveSmiley(new Coordinate(row - 1, col));
 				// System.out.println("smiley " + smiley.getX() + " : " +
 				// smiley.getY());
 			}
@@ -146,7 +187,7 @@ public class GamePanel extends JComponent implements KeyListener {
 		case 'S':
 		case 's':
 			System.out.println("s pressed");
-			moveSmiley(row, col);
+			moveSmiley(new Coordinate(row, col));
 			// System.out.println("smiley " + smiley.getX() + " : " +
 			// smiley.getY());
 			break;
@@ -155,7 +196,7 @@ public class GamePanel extends JComponent implements KeyListener {
 		case 'd':
 			System.out.println("d pressed");
 			if (col < COLS - 1) {
-				moveSmiley(row, col + 1);
+				moveSmiley(new Coordinate(row + 1, col));
 				// System.out.println("smiley " + smiley.getX() + " : " +
 				// smiley.getY());
 			}
@@ -165,7 +206,7 @@ public class GamePanel extends JComponent implements KeyListener {
 		case 'z':
 			System.out.println("z pressed");
 			if (col > 0 && row < ROWS - 1) {
-				moveSmiley(row + 1, col - 1);
+				moveSmiley(new Coordinate(row - 1, col + 1));
 				// System.out.println("smiley " + smiley.getX() + " : " +
 				// smiley.getY());
 			}
@@ -175,7 +216,7 @@ public class GamePanel extends JComponent implements KeyListener {
 		case 'x':
 			System.out.println("x pressed");
 			if (row < ROWS - 1) {
-				moveSmiley(row + 1, col);
+				moveSmiley(new Coordinate(row, col + 1));
 				// System.out.println("smiley " + smiley.getX() + " : " +
 				// smiley.getY());
 			}
@@ -185,7 +226,7 @@ public class GamePanel extends JComponent implements KeyListener {
 		case 'c':
 			System.out.println("c pressed");
 			if (row < ROWS - 1 && col < COLS - 1) {
-				moveSmiley(row + 1, col + 1);
+				moveSmiley(new Coordinate(row + 1, col + 1));
 				// System.out.println("smiley " + smiley.getX() + " : " +
 				// smiley.getY());
 			}
@@ -197,12 +238,26 @@ public class GamePanel extends JComponent implements KeyListener {
 		}
 	}
 
-	private void moveSmiley(int x, int y) {
+	/**
+	 * Finds a cell in the array with given x and y coordinates
+	 * @param c Coordinate of the new position
+	 * @return null if no cell can be found or the cell if it can
+	 */
+	private AbstractCell getCell(final Coordinate c) {
 
-		if (cells[x][y] == null) {
-			cells[smiley.getX()][smiley.getY()] = null;
-			smiley.move(x, y);
-			cells[x][y] = smiley;
+		for (AbstractCell cell : cells) {
+
+			if (cell.position.x == c.x && cell.position.y == c.y) return cell;
+		}
+
+		return null;
+	}
+
+	private void moveSmiley(final Coordinate c) {
+
+		AbstractCell cell = getCell(c);
+		if (cell == null) {
+			smiley.move(c);
 		} else {
 			System.out.println("Should not be here!");
 		}
@@ -224,21 +279,21 @@ public class GamePanel extends JComponent implements KeyListener {
 		repaint();
 	}
 
+	/**
+	 * Have each cell draw itself
+	 * @param g Graphics object used to draw
+	 */
 	private void drawCells(Graphics2D g) {
 
-		// Have each cell draw itself
-		for (int row = 0; row < ROWS; row++) {
-			for (int col = 0; col < COLS; col++) {
-				AbstractCell cell = cells[row][col];
-				// The cell cannot know for certain the offsets nor the height
-				// and width; it has been set up to know its own position, so
-				// that need not be passed as an argument to the draw method
-				if (cell != null)
-					cell.draw(X_GRID_OFFSET, Y_GRID_OFFSET, CELL_WIDTH, CELL_HEIGHT, g);
-			}
+		for (AbstractCell cell : cells) {
+
+			cell.draw(X_GRID_OFFSET, Y_GRID_OFFSET, CELL_WIDTH, CELL_HEIGHT, g);
 		}
 	}
 
+	/**
+	 * @param g Graphics object used to draw
+	 */
 	private void drawGrid(Graphics2D g) {
 
 		g.setColor(Color.BLACK);
@@ -270,7 +325,7 @@ public class GamePanel extends JComponent implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 
 		moveSmiley(e);
-		
+
 		repaint();
 	}
 
