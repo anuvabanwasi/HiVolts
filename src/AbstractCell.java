@@ -27,8 +27,8 @@ public abstract class AbstractCell {
 		(final int x_offset, final int y_offset, final int width, final int height, Graphics2D g) {
 
         final int
-            top_x = x_offset + GamePanel.GRID_SPACING + (position.x * (width  + GamePanel.GRID_SPACING)),
-            top_y = y_offset + GamePanel.GRID_SPACING + (position.y * (height + GamePanel.GRID_SPACING));
+            top_x = x_offset + GamePanel.GRID_SPACING/2 + (position.x * (width  + GamePanel.GRID_SPACING)),
+            top_y = y_offset + GamePanel.GRID_SPACING/2 + (position.y * (height + GamePanel.GRID_SPACING));
 
         g.drawImage(image.getScaledInstance(width, height, BufferedImage.SCALE_FAST), top_x, top_y, Color.black, null);
     }
@@ -36,6 +36,10 @@ public abstract class AbstractCell {
 	public void move(final Coordinate c) {
 	    position = c;
     }
+
+	public Coordinate getPosition() {
+		return position;
+	}
 
 	public abstract boolean killsPlayer();
 	

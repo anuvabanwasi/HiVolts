@@ -1,5 +1,3 @@
-import sun.plugin.dom.core.CoreConstants;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -25,6 +23,7 @@ public class GamePanel extends JComponent implements KeyListener {
 		ROWS = 12,
 		COLS = 12;
 	public static List<AbstractCell> cells = new ArrayList<>();
+	public static List<Mho> mhos = new ArrayList<>();
 	public static List<Coordinate> emptyCoordinates = new ArrayList<>();
 	private static final int
 		NUM_OF_MHOS = 12,
@@ -94,7 +93,9 @@ public class GamePanel extends JComponent implements KeyListener {
 
 		Coordinate coordinate = getRandomPosition();
 
-		addCell(new Mho(coordinate));
+		Mho mho = new Mho(coordinate);
+		mhos.add(mho);
+		addCell(mho);
 	}
 
 
@@ -119,7 +120,7 @@ public class GamePanel extends JComponent implements KeyListener {
 
 		cells.add(cell);
 
-		Coordinate c1 = cell.position;
+		Coordinate c1 = cell.getPosition();
 		for (int i = 0; i < emptyCoordinates.size(); i++) {
 			Coordinate c2 = emptyCoordinates.get(i);
 			if (c1.x == c2.x && c1.y == c2.y) emptyCoordinates.remove(i);
@@ -136,106 +137,83 @@ public class GamePanel extends JComponent implements KeyListener {
 
 	private void moveSmiley(KeyEvent e) {
 
-		char c = e.getKeyChar();
+		int c = e.getKeyCode();
 
 		int row = smiley.position.x, col = smiley.position.y;
 
 		switch (c) {
-		case 'Q':
-		case 'q':
-			System.out.println("q pressed");
-			if (row > 0 && col > 0) {
-				moveSmiley(new Coordinate(row - 1, col - 1));
-				// System.out.println("smiley " + smiley.getX() + " : " +
-				// smiley.getY());
+			case KeyEvent.VK_Q:
+				if (row > 0 && col > 0) {
+					update(new Coordinate(row - 1, col - 1));
+				}
+				break;
 
+			case KeyEvent.VK_W:
+			case KeyEvent.VK_UP:
+				if (row > 0) {
+					update(new Coordinate(row, col - 1));
+				}
+				break;
+
+			case KeyEvent.VK_E:
+				if (row > 0 && col < COLS - 1) {
+					update(new Coordinate(row + 1, col - 1));
+				}
+
+				break;
+
+			case KeyEvent.VK_A:
+			case KeyEvent.VK_LEFT:
+				if (col > 0) {
+					update(new Coordinate(row - 1, col));
+				}
+				break;
+
+			case KeyEvent.VK_S:
+				update(new Coordinate(row, col));
+				break;
+
+			case KeyEvent.VK_D:
+			case KeyEvent.VK_RIGHT:
+				if (col < COLS - 1) {
+					update(new Coordinate(row + 1, col));
+				}
+				break;
+
+			case KeyEvent.VK_Z:
+				if (col > 0 && row < ROWS - 1) {
+					update(new Coordinate(row - 1, col + 1));
+				}
+				break;
+
+			case KeyEvent.VK_X:
+			case KeyEvent.VK_DOWN:
+				if (row < ROWS - 1) {
+					update(new Coordinate(row, col + 1));
+				}
+				break;
+
+			case KeyEvent.VK_C:
+				if (row < ROWS - 1 && col < COLS - 1) {
+					update(new Coordinate(row + 1, col + 1));
+				}
+				break;
+
+			default:
+				break;
 			}
-			break;
+	}
 
-		case 'W':
-		case 'w':
-			System.out.println("w pressed");
-			if (row > 0) {
-				moveSmiley(new Coordinate(row, col - 1));
-				// System.out.println("smiley " + smiley.getX() + " : " +
-				// smiley.getY());
-			}
+	/**
+	 * Update movement in the game board.
+	 *
+	 * @param newSmileyPosition Desired player position
+	 */
+	private void update(final Coordinate newSmileyPosition) {
 
-			break;
+		moveSmiley(newSmileyPosition);
 
-		case 'E':
-		case 'e':
-			System.out.println("e pressed");
-			if (row > 0 && col < COLS - 1) {
-				moveSmiley(new Coordinate(row + 1, col - 1));
-				// System.out.println("smiley " + smiley.getX() + " : " +
-				// smiley.getY());
-			}
-
-			break;
-
-		case 'A':
-		case 'a':
-			System.out.println("a pressed");
-			if (col > 0) {
-				moveSmiley(new Coordinate(row - 1, col));
-				// System.out.println("smiley " + smiley.getX() + " : " +
-				// smiley.getY());
-			}
-			break;
-
-		case 'S':
-		case 's':
-			System.out.println("s pressed");
-			moveSmiley(new Coordinate(row, col));
-			// System.out.println("smiley " + smiley.getX() + " : " +
-			// smiley.getY());
-			break;
-
-		case 'D':
-		case 'd':
-			System.out.println("d pressed");
-			if (col < COLS - 1) {
-				moveSmiley(new Coordinate(row + 1, col));
-				// System.out.println("smiley " + smiley.getX() + " : " +
-				// smiley.getY());
-			}
-			break;
-
-		case 'Z':
-		case 'z':
-			System.out.println("z pressed");
-			if (col > 0 && row < ROWS - 1) {
-				moveSmiley(new Coordinate(row - 1, col + 1));
-				// System.out.println("smiley " + smiley.getX() + " : " +
-				// smiley.getY());
-			}
-			break;
-
-		case 'X':
-		case 'x':
-			System.out.println("x pressed");
-			if (row < ROWS - 1) {
-				moveSmiley(new Coordinate(row, col + 1));
-				// System.out.println("smiley " + smiley.getX() + " : " +
-				// smiley.getY());
-			}
-			break;
-
-		case 'C':
-		case 'c':
-			System.out.println("c pressed");
-			if (row < ROWS - 1 && col < COLS - 1) {
-				moveSmiley(new Coordinate(row + 1, col + 1));
-				// System.out.println("smiley " + smiley.getX() + " : " +
-				// smiley.getY());
-			}
-			break;
-
-		default:
-			System.out.println("Key not supported!");
-			break;
-		}
+		moveMhos();
 	}
 
 	/**
@@ -263,6 +241,28 @@ public class GamePanel extends JComponent implements KeyListener {
 		}
 
 		repaint();
+	}
+
+	/**
+	 * Moves all mhos to attack the player
+	 */
+	private void moveMhos() {
+
+		for (Mho mho : mhos) {
+
+			Coordinate mp = mho.getPosition(), sp = smiley.getPosition(), move = new Coordinate(mp.x, mp.y);
+
+			int
+				xmove = mp.x < sp.x ? 1 : -1,
+				ymove = mp.y < sp.y ? 1 : -1;
+
+			if (getCell(new Coordinate(mp.x + xmove, mp.y)) == null)
+				move.x += xmove;
+			if (getCell(new Coordinate(mp.x, mp.y + ymove)) == null)
+				move.y += ymove;
+
+			mho.move(move);
+		}
 	}
 
 	@Override
@@ -299,23 +299,23 @@ public class GamePanel extends JComponent implements KeyListener {
 		g.setColor(Color.BLACK);
 		g.fillRect(X_GRID_OFFSET, Y_GRID_OFFSET, (CELL_WIDTH+GRID_SPACING)*ROWS, (CELL_HEIGHT+GRID_SPACING)*COLS);
 
-		g.setColor(Color.BLACK);
+		g.setColor(Color.DARK_GRAY);
 
 		// Draw rows
 		for (int row = 0; row <= ROWS; row++) {
 			g.drawLine(
 				X_GRID_OFFSET,
-			Y_GRID_OFFSET + (row * (CELL_HEIGHT + GRID_SPACING)),
+			Y_GRID_OFFSET + row  * (CELL_HEIGHT + GRID_SPACING),
 			X_GRID_OFFSET + COLS * (CELL_WIDTH  + GRID_SPACING),
-			Y_GRID_OFFSET + (row * (CELL_HEIGHT + GRID_SPACING)));
+			Y_GRID_OFFSET + row  * (CELL_HEIGHT + GRID_SPACING));
 		}
 
 		// Draw columns
 		for (int col = 0; col <= COLS; col++) {
 			g.drawLine(
-			X_GRID_OFFSET + (col * (CELL_WIDTH + GRID_SPACING)),
+			X_GRID_OFFSET + col  * (CELL_WIDTH + GRID_SPACING),
 				Y_GRID_OFFSET,
-			X_GRID_OFFSET + (col * (CELL_WIDTH  + GRID_SPACING)),
+			X_GRID_OFFSET + col  * (CELL_WIDTH  + GRID_SPACING),
 			Y_GRID_OFFSET + ROWS * (CELL_HEIGHT + GRID_SPACING));
 		}
 	}
@@ -329,13 +329,8 @@ public class GamePanel extends JComponent implements KeyListener {
 		repaint();
 	}
 
-	@Override
-	public void keyReleased(KeyEvent e) {
-	}
+	@Override public void keyReleased(KeyEvent e) {}
 
-	@Override
-	public void keyTyped(KeyEvent e) {
-	}
-	
+	@Override public void keyTyped(KeyEvent e) {}
 	
 }
