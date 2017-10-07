@@ -1,29 +1,27 @@
-import javax.swing.JFrame;
-import java.awt.*;
+package com.hivolts;
 
+
+import javax.swing.JFrame;
 /**
- * @author Anuva Banwasi
+ * Main Class that launches the HiVolts game. It creates a JFrame and add a Display JPanel to it. The Display panel is a grid with Cell
+ * @author anuva
+ *
  */
 public class Main {
 
-	final static int WINDOW_WIDTH = 870, WINDOW_HEIGHT = 900;
-
 	public static void main(String[] args) {
-
 		// Bring up a JFrame with squares to represent the cells
-		JFrame f = new JFrame("HiVolts");
-
-		f.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setBackground(Color.BLACK);
+		final int DISPLAY_WIDTH = 900;
+		final int DISPLAY_HEIGHT = 900;
+		JFrame f = new JFrame();
+		f.setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+		GamePanel display = new GamePanel(DISPLAY_WIDTH, DISPLAY_HEIGHT);
 		f.setLayout(null);
-
-		GamePanel panel = new GamePanel(WINDOW_WIDTH, WINDOW_HEIGHT);
-		f.add(panel);
-
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setTitle("HiVolts_AQ");
+		f.add(display);
 		f.setVisible(true);
-
 		f.requestFocusInWindow();
-		panel.requestFocusInWindow();
+		display.requestFocusInWindow();
 	}
 }

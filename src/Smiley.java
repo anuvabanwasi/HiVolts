@@ -1,15 +1,12 @@
+package com.hivolts;
+
 /**
  * @author Quintin Dwight
  */
 public class Smiley extends AbstractCell {
 
-    public Smiley(Coordinate position) {
-
-        super("Smiley.png", position);
+    public Smiley(int x, int y) {
+        super("smiley.png", x, y);
     }
 
-    @Override
-    public boolean killsPlayer() {
-        return false;
-    }
 }

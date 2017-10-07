@@ -1,19 +1,11 @@
-import java.awt.image.BufferedImage;
+package com.hivolts;
 
 /**
  * @author Quintin Dwight
  */
 public class Mho extends AbstractCell {
 
-    BufferedImage image;
-
-    public Mho(Coordinate position) {
-
-        super("Mho.png", position);
-    }
-
-    @Override
-    public boolean killsPlayer() {
-        return true;
+    public Mho(int x, int y) {
+        super("Mho.png", x, y);
     }
 }
