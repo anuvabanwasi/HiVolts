@@ -2,6 +2,7 @@ package com.hivolts;
 
 /**
  * @author Quintin Dwight
+ * @author Anuva Banwasi
  */
 
 public class Coordinate {

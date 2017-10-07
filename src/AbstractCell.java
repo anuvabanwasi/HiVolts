@@ -8,6 +8,11 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/**
+ * @author Quintin Dwight
+ * @author Anuva Banwasi
+ *
+ */
 public abstract class AbstractCell {
 
 	private int x, y;

@@ -17,6 +17,12 @@ import javax.swing.JComponent;
 
 public class GamePanel extends JComponent implements KeyListener {
 
+	private static final String FENCE = "fence";
+
+	private static final String MHO = "mho";
+
+	private static final String SMILEY = "smiley";
+
 	private static final long serialVersionUID = 1L;
 	
 	private static final int
@@ -24,8 +30,8 @@ public class GamePanel extends JComponent implements KeyListener {
 		COLS = 12;
 	
 	private static final int
-		NUM_OF_MHOS = 2,
-		NUM_OF_INTERIOR_FENCES = 2;
+		NUM_OF_MHOS = 20,
+		NUM_OF_INTERIOR_FENCES = 12;
 	
 	private final int
 		X_GRID_OFFSET = 25, // 25 pixels from left,
@@ -110,17 +116,17 @@ public class GamePanel extends JComponent implements KeyListener {
 	private void initInteriorFences() {
 		
 		for (int i = 0; i < NUM_OF_INTERIOR_FENCES; i++) {
-			initObject("fence");
+			initObject(FENCE);
 		}
 	}
 	
 	private void initMho() {
-		Coordinate c = initObject("mho");
+		Coordinate c = initObject(MHO);
 		mhos.add(cells[c.getX()][c.getY()]);
 	}
 
 	private void initSmiley() {
-		Coordinate c = initObject("smiley");
+		Coordinate c = initObject(SMILEY);
 		smiley = cells[c.getX()][c.getY()];
 	}
 	
@@ -130,11 +136,11 @@ public class GamePanel extends JComponent implements KeyListener {
 		int x = coordinate.getX();
 		int y = coordinate.getY();
 
-		if(type.equalsIgnoreCase("smiley"))
+		if(type.equalsIgnoreCase(SMILEY))
 			cells[x][y] = new Smiley(x, y);
-		else if (type.equalsIgnoreCase("mho"))
+		else if (type.equalsIgnoreCase(MHO))
 			cells[x][y] = new Mho(x, y);
-		else if (type.equalsIgnoreCase("fence"))
+		else if (type.equalsIgnoreCase(FENCE))
 			cells[x][y] = new Fence(x, y);
 		
 		Coordinate c = new Coordinate(x,y);
