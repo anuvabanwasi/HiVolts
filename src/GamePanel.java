@@ -78,7 +78,7 @@ public class GamePanel extends JComponent implements KeyListener {
 	private void initCells() {
 		
 		// Set Exterior Electric Fences
-		/*initExteriorFences();
+		initExteriorFences();
 			
 		// Set Smiley 
 		initSmiley();
@@ -89,11 +89,7 @@ public class GamePanel extends JComponent implements KeyListener {
 		}
 		
 		// Set Interior Electric Fences
-		initInteriorFences();*/
-		
-		//testMoveToMhoAlignDiagonally();
-		//testMhoDiesOnFence();
-		testMhoOnMho();
+		initInteriorFences();
 	}
 
 	private void initExteriorFences() {
@@ -531,120 +527,4 @@ public class GamePanel extends JComponent implements KeyListener {
 		}
 	}
 
-	/**
-	 * Tests
-	 * 
-	 */
-	
-	public void testMhoDiesOnFence(){
-		setSmileyForTest(7, 8);
-		setupMhoForTest(7, 3);
-		setupFencesForTest(7, 5);
-	}
-	
-	public void testMhoOnMho(){
-		setSmileyForTest(7, 10);
-		setupMhoForTest(7, 2);
-		setupMhoForTest(7, 3);
-		setupFencesForTest(7, 6);
-	}
-	
-	public void testMoveToMhoAlignDiagonally(){
-		setSmileyForTest(7, 5);
-		setupMhoForTest(3, 4);
-		setupFencesForTest(6, 7);
-		
-		moveSmiley(6, 5);
-		moveMhos();
-		
-		moveSmiley(5, 4);
-		moveMhos();
-		
-		if(!gameOver)
-			System.out.println("Error!");
-	}
-	
-	public void testMoveToMhoAlignVertically(){
-		setSmileyForTest(5, 5);
-		setupMhoForTest(3, 4);
-		setupFencesForTest(6, 7);
-		
-		moveSmiley(5, 4);
-		moveMhos();
-		
-		moveSmiley(3, 4);
-		moveMhos();
-		
-		if(!gameOver)
-			System.out.println("Error!");
-	}
-	
-	public void testMoveToMhoAlignHorizontally(){
-		setSmileyForTest(3, 7);
-		setupMhoForTest(3, 4);
-		setupFencesForTest(6, 7);
-		
-		moveSmiley(3, 6);
-		moveMhos();
-		
-		moveSmiley(3, 5);
-		moveMhos();
-		
-		if(!gameOver)
-			System.out.println("Error!");
-	}
-	
-	public void testMoveToElectricFence(){
-		setSmileyForTest(4, 5);
-		setupMhoForTest(3, 4);
-		setupFencesForTest(6, 6);
-		
-		moveSmiley(5, 5);
-		
-		if(!gameOver)
-			System.out.println("Error!");
-	}
-	
-	public void testMoveToMho(){
-		setSmileyForTest(5, 5);
-		setupMhoForTest(3, 4);
-		setupFencesForTest(6, 6);
-		
-		moveSmiley(5, 4);
-		moveMhos();
-		
-		moveSmiley(4, 4);
-		moveMhos();
-		
-		if(!gameOver)
-			System.out.println("Error!");
-	}
-	
-	public void testMoveToEmptyCell(){
-		setSmileyForTest(4, 5);
-		setupMhoForTest(3, 4);
-		setupFencesForTest(6, 6);
-		
-		moveSmiley(5, 5);
-		
-		if(gameOver)
-			System.out.println("Error!");
-	}
-	
-	private void setupFencesForTest(int x, int y) {
-	
-		cells[x][y] = new Fence(x, y);
-	}
-
-	private void setupMhoForTest(int x, int y) {
-
-		cells[x][y] = new Mho(x, y);
-		mhos.add(cells[x][y]);
-	}
-	
-	public void setSmileyForTest(int x, int y){
-
-		cells[x][y] = new Smiley(x, y);
-		smiley = cells[x][y];
-	}
 }
