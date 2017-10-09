@@ -1,4 +1,3 @@
-package com.hivolts;
 
 import java.awt.Color;
 import java.awt.Graphics;

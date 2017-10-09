@@ -1,4 +1,3 @@
-package com.hivolts;
 
 
 import javax.swing.JFrame;

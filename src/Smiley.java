@@ -1,4 +1,3 @@
-package com.hivolts;
 
 /**
  * @author Quintin Dwight
