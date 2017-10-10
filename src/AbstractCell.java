@@ -14,13 +14,12 @@ import javax.imageio.ImageIO;
  */
 public abstract class AbstractCell {
 
-	private int x, y;
+	private Coordinate c;
 	private BufferedImage image;
 
-	public AbstractCell(String imagePath, int x, int y) {
+	public AbstractCell(String imagePath, Coordinate c) {
 
-		this.x = x;
-		this.y = y;
+		this.c = c;
 
         try {
 			image = ImageIO.read(new File("res/" + imagePath));
@@ -32,29 +31,18 @@ public abstract class AbstractCell {
 	public void draw(final int x_offset, final int y_offset, final int width, final int height, Graphics g) {
 
         final int
-            top_x = x_offset + 1 + (y * (width  + 1)),
-            top_y = y_offset + 1 + (x * (height + 1));
+            top_x = x_offset + 1 + (c.getY() * (width  + 1)),
+            top_y = y_offset + 1 + (c.getX() * (height + 1));
 
         g.fillRect(top_x, top_y, width, height);
         g.drawImage(image.getScaledInstance(width, height, BufferedImage.SCALE_FAST), top_x, top_y, Color.black, null);
     }
 
-	public void move(int newX, int newY) {
-	    x = newX;
-	    y = newY;
+	public Coordinate getPosition() {
+		return c;
+	}
+
+	public void move(Coordinate newPosition) {
+	    c = newPosition;
     }
-
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
-	
-	@Override
-	public String toString() {
-		return "Cell [x=" + x + ", y=" + y + "]";
-	}
-
 }

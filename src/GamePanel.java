@@ -16,11 +16,7 @@ import javax.swing.JComponent;
 
 public class GamePanel extends JComponent implements KeyListener {
 
-	private static final String FENCE = "fence";
-
-	private static final String MHO = "mho";
-
-	private static final String SMILEY = "smiley";
+	private static final String FENCE = "fence", MHO = "mho", SMILEY = "smiley";
 
 	private static final long serialVersionUID = 1L;
 	
@@ -43,8 +39,9 @@ public class GamePanel extends JComponent implements KeyListener {
 	// Note that a final field can be initialized in constructor
 	private final int DISPLAY_WIDTH, DISPLAY_HEIGHT;
 	
-	private AbstractCell smiley;
-	private List<AbstractCell> mhos = new ArrayList<AbstractCell>();
+	private Smiley smiley;
+	private List<Mho> mhos = new ArrayList<>();
+	private List<Fence> fences = new ArrayList<>();
 	private static List<Coordinate> emptyCoordinates = new ArrayList<>();
 	
 	private boolean gameOver;
@@ -80,11 +77,11 @@ public class GamePanel extends JComponent implements KeyListener {
 		initExteriorFences();
 			
 		// Set Smiley 
-		initSmiley();
+		createSmiley(getRandomPosition());
 		
 		// Set Mho Cells
 		for(int i = 0; i < NUM_OF_MHOS; i++) {
-			initMho();
+			createMho(getRandomPosition());
 		}
 		
 		// Set Interior Electric Fences
@@ -92,19 +89,20 @@ public class GamePanel extends JComponent implements KeyListener {
 	}
 
 	private void initExteriorFences() {
+
 		for(int i = 0; i < COLS; i++) {
-			cells[0][i] = new Fence(0 , i);
+			cells[0][i] = new Fence(new Coordinate(0 , i));
 			removeCell(new Coordinate(0, i));
 			
-			cells[ROWS-1][i] = new Fence(ROWS-1, i);
+			cells[ROWS-1][i] = new Fence(new Coordinate(ROWS-1, i));
 			removeCell(new Coordinate(ROWS-1, i));
 		}
 		
 		for(int i = 0; i < ROWS; i++) {
-			cells[i][0] = new Fence(i, 0);
+			cells[i][0] = new Fence(new Coordinate(i, 0));
 			removeCell(new Coordinate(i, 0));
 			
-			cells[i][ROWS-1] = new Fence(i, ROWS-1);
+			cells[i][ROWS-1] = new Fence(new Coordinate(i, ROWS-1));
 			removeCell(new Coordinate(i, ROWS-1));
 		}
 	}
@@ -112,137 +110,141 @@ public class GamePanel extends JComponent implements KeyListener {
 	private void initInteriorFences() {
 		
 		for (int i = 0; i < NUM_OF_INTERIOR_FENCES; i++) {
-			initObject(FENCE);
+			createFence(getRandomPosition());
 		}
 	}
-	
-	private void initMho() {
-		Coordinate c = initObject(MHO);
-		mhos.add(cells[c.getX()][c.getY()]);
+
+	private Mho createMho(Coordinate c)
+	{
+		Mho mho = new Mho(c);
+
+		mhos.add(mho);
+
+		initCellObject(mho);
+
+		return mho;
 	}
 
-	private void initSmiley() {
-		Coordinate c = initObject(SMILEY);
-		smiley = cells[c.getX()][c.getY()];
-	}
-	
-	private Coordinate initObject(String type){
-		Coordinate coordinate = getRandomPosition();
-		
-		int x = coordinate.getX();
-		int y = coordinate.getY();
+	private Smiley createSmiley(Coordinate c)
+	{
+		Smiley smiley = new Smiley(c);
 
-		if(type.equalsIgnoreCase(SMILEY))
-			cells[x][y] = new Smiley(x, y);
-		else if (type.equalsIgnoreCase(MHO))
-			cells[x][y] = new Mho(x, y);
-		else if (type.equalsIgnoreCase(FENCE))
-			cells[x][y] = new Fence(x, y);
-		
-		Coordinate c = new Coordinate(x,y);
-		
-		removeCell(c);
-		
-		return c;
+		this.smiley = smiley;
+
+		initCellObject(smiley);
+
+		return smiley;
+	}
+
+	private Fence createFence(Coordinate c)
+	{
+		Fence fence = new Fence(c);
+
+		fences.add(fence);
+
+		initCellObject(fence);
+
+		return fence;
+	}
+
+	private void initCellObject(AbstractCell cell)
+	{
+		Coordinate cp = cell.getPosition();
+
+		cells[cp.getX()][cp.getY()] = cell;
+
+		removeCell(cp);
 	}
 
 	private void moveSmiley(KeyEvent e) {
+
 		if (!gameOver) {
-			
-			int row = smiley.getX(), col = smiley.getY();
+
+			Coordinate cp = smiley.getPosition();
+			int row = cp.getX(), col = cp.getY();
 			int c = e.getKeyCode();
 
 			switch (c) {
-			case KeyEvent.VK_Q:
-				System.out.println("q pressed");
-				if (row > 0 && col > 0) {
-					moveSmiley(row - 1, col - 1);
+				case KeyEvent.VK_Q:
+					if (row > 0 && col > 0) {
+						moveSmiley(row - 1, col - 1);
 
-				}
-				moveMhos();
-				break;
+					}
+					moveMhos();
+					break;
 
-			case KeyEvent.VK_W:
-			case KeyEvent.VK_UP:
-				System.out.println("w pressed");
-				if (row > 0) {
-					moveSmiley(row - 1, col);
-				}
-				moveMhos();
-				break;
+				case KeyEvent.VK_W:
+				case KeyEvent.VK_UP:
+					if (row > 0) {
+						moveSmiley(row - 1, col);
+					}
+					moveMhos();
+					break;
 
-			case KeyEvent.VK_E:
-				System.out.println("e pressed");
-				if (row > 0 && col < COLS - 1) {
-					moveSmiley(row - 1, col + 1);
-				}
-				moveMhos();
-				break;
+				case KeyEvent.VK_E:
+					if (row > 0 && col < COLS - 1) {
+						moveSmiley(row - 1, col + 1);
+					}
+					moveMhos();
+					break;
 
-			case KeyEvent.VK_A:
-			case KeyEvent.VK_LEFT:
-				System.out.println("a pressed");
-				if (col > 0) {
-					moveSmiley(row, col - 1);
-				}
-				moveMhos();
-				break;
+				case KeyEvent.VK_A:
+				case KeyEvent.VK_LEFT:
+					if (col > 0) {
+						moveSmiley(row, col - 1);
+					}
+					moveMhos();
+					break;
 
-			case KeyEvent.VK_S:
-				System.out.println("s pressed");
-				moveSmiley(row, col);
-				break;
+				case KeyEvent.VK_S:
+					moveSmiley(row, col);
+					break;
 
-			case KeyEvent.VK_D:
-			case KeyEvent.VK_RIGHT:
-				System.out.println("d pressed");
-				if (col < COLS - 1) {
-					moveSmiley(row, col + 1);
-				}
-				moveMhos();
-				break;
+				case KeyEvent.VK_D:
+				case KeyEvent.VK_RIGHT:
+					if (col < COLS - 1) {
+						moveSmiley(row, col + 1);
+					}
+					moveMhos();
+					break;
 
-			case KeyEvent.VK_Z:
-				System.out.println("z pressed");
-				if (col > 0 && row < ROWS - 1) {
-					moveSmiley(row + 1, col - 1);
-				}
-				moveMhos();
-				break;
+				case KeyEvent.VK_Z:
+					if (col > 0 && row < ROWS - 1) {
+						moveSmiley(row + 1, col - 1);
+					}
+					moveMhos();
+					break;
 
-			case KeyEvent.VK_X:
-			case KeyEvent.VK_DOWN:
-				System.out.println("x pressed");
-				if (row < ROWS - 1) {
-					moveSmiley(row + 1, col);
-				}
-				moveMhos();
-				break;
+				case KeyEvent.VK_X:
+				case KeyEvent.VK_DOWN:
+					if (row < ROWS - 1) {
+						moveSmiley(row + 1, col);
+					}
+					moveMhos();
+					break;
 
-			case KeyEvent.VK_C:
-				System.out.println("c pressed");
-				if (row < ROWS - 1 && col < COLS - 1) {
-					moveSmiley(row + 1, col + 1);
-				}
-				moveMhos();
-				break;
-			
-			case KeyEvent.VK_J:
-				System.out.println("j pressed");
-				jumpSmiley();
-				break;
-			default:
-				System.out.println("Key not supported!");
-				return;
+				case KeyEvent.VK_C:
+					if (row < ROWS - 1 && col < COLS - 1) {
+						moveSmiley(row + 1, col + 1);
+					}
+					moveMhos();
+					break;
+
+				case KeyEvent.VK_J:
+					jumpSmiley();
+					break;
 			}
 		}
 	}
 
 	private void jumpSmiley() {
-		int x = ThreadLocalRandom.current().nextInt(1, ROWS - 1),
-				y = ThreadLocalRandom.current().nextInt(1, COLS - 1);
+
+		int
+			x = ThreadLocalRandom.current().nextInt(1, ROWS - 1),
+			y = ThreadLocalRandom.current().nextInt(1, COLS - 1);
 		
 		while (cells[x][y] instanceof Fence) {
+
 			x = getRandomRow();
 			y = getRandomCol();
 		}
@@ -250,8 +252,10 @@ public class GamePanel extends JComponent implements KeyListener {
 		if (cells[x][y] instanceof Mho) {
 			return;
 		} else if (cells[x][y] == null) {
-			cells[smiley.getX()][smiley.getY()] = null;
-			smiley.move(x, y);
+
+			Coordinate smileyPosition = smiley.getPosition();
+			cells[smileyPosition.getX()][smileyPosition.getY()] = null;
+			smiley.move(new Coordinate(x, y));
 			cells[x][y] = smiley;
 		} 
 		repaint();
@@ -265,11 +269,10 @@ public class GamePanel extends JComponent implements KeyListener {
 			gameOver();
 		} else if (cells[x][y] == null) {
 			// first reset current cell, then move to next position, assign smiley at that position
-			cells[smiley.getX()][smiley.getY()] = null;
-			smiley.move(x, y);
+			Coordinate smileyPosition = smiley.getPosition();
+			cells[smileyPosition.getX()][smileyPosition.getY()] = null;
+			smiley.move(new Coordinate(x, y));
 			cells[x][y] = smiley;
-		}  else {
-			System.out.println("Should not be here!");
 		}
 
 		repaint();
@@ -278,163 +281,144 @@ public class GamePanel extends JComponent implements KeyListener {
 	private void moveMhos() {
 
 		if (!gameOver) {
-			System.out.println("\nsmiley -> " + smiley.getX() + " , " + smiley.getY());
+
+			final Coordinate smileyPosition = smiley.getPosition();
 
 			for (int i = 0; i < mhos.size() && !gameOver; i++) {
 
-				AbstractCell mho = mhos.get(i);
+				Mho mho = mhos.get(i);
 
-				System.out.println("current mho position -> " + mho.getX() + " , " + mho.getY());
+				Coordinate mhoPosition = mho.getPosition();
 
 				// mho and smiley are in same row
-				if (mho.getX() == smiley.getX()) {
+				if (mhoPosition.getX() == smileyPosition.getX()) {
 					moveHorizontally(i, mho);
 				} 
 				// mho and smiley are in same column
-				else if (mho.getY() == smiley.getY()) {
+				else if (mhoPosition.getY() == smileyPosition.getY()) {
 					moveVertically(i, mho);
-				} 
+				}
 				else {
-					moveMho(i, mho);
+					moveDiagonally(i, mho);
 				}
 
 				repaint();
 			}
 		}
 	}
-	
 
-	private void moveVertically(int i, AbstractCell mho) {
+	private void moveVertically(int i, Mho mho) {
+
 		int row;
 		int col;
+
+		final Coordinate mhoPosition = mho.getPosition(), smileyPosition = smiley.getPosition();
 		
-		if (mho.getX() < smiley.getX()) {
-			row = mho.getX() + 1;
-			col = mho.getY();			
+		if (mhoPosition.getX() < smileyPosition.getX()) {
+			row = mhoPosition.getX() + 1;
+			col = mhoPosition.getY();
 		} else {
-			row = mho.getX() - 1;
-			col = mho.getY();
+			row = mhoPosition.getX() - 1;
+			col = mhoPosition.getY();
 		}
 		
-		if(cells[row][col] instanceof Fence){
-			cells[mho.getX()][mho.getY()] = null;
+		if (cells[row][col] instanceof Fence) {
+			cells[mhoPosition.getX()][mhoPosition.getY()] = null;
 			mhos.remove(i);
 		}
 		else if(cells[row][col] instanceof Smiley) {
-			killSmiley(mho, row, col);
-		} else if(cells[row][col] instanceof Mho){
+			killSmiley(mho, new Coordinate(row, col));
+		} else if(cells[row][col] instanceof Mho) {
 			// Don't move
-		}
-		else{
-			move(mho, row, col);
+		} else {
+			move(mho, new Coordinate(row, col));
 		}
 	}
 	
-	private void moveHorizontally(int i, AbstractCell mho) {
+	private void moveHorizontally(int i, Mho mho) {
+
 		int row;
 		int col;
-		
-		if (mho.getY() < smiley.getY()) {
-			row = mho.getX();
-			col = mho.getY() + 1;
+
+		final Coordinate mhoPosition = mho.getPosition(), smileyPosition = smiley.getPosition();
+
+		if (mhoPosition.getY() < smileyPosition.getY()) {
+			row = mhoPosition.getX();
+			col = mhoPosition.getY() + 1;
 		} else {
-			row = mho.getX();
-			col = mho.getY() - 1;
+			row = mhoPosition.getX();
+			col = mhoPosition.getY() - 1;
 		}
 				
-		if(cells[row][col] instanceof Fence){
-			cells[mho.getX()][mho.getY()] = null;
+		if(cells[row][col] instanceof Fence) {
+			cells[mhoPosition.getX()][mhoPosition.getY()] = null;
 			mhos.remove(i);
 		}
 		else if(cells[row][col] instanceof Smiley){
-			killSmiley(mho, row, col);
+			killSmiley(mho, new Coordinate(row, col));
 		} else if(cells[row][col] instanceof Mho){
 			// Don't move
-		} 
-		else{
-			System.out.println("Move");
-			move(mho, row, col);
+		} else{
+			move(mho, new Coordinate(row, col));
 		}
 	}
-	private void moveMho(int i, AbstractCell mho) {
-		AbstractCell destCell = moveToAvailableCell(mho);
-		if (destCell != null) {
-			cells[mho.getX()][mho.getY()] = null;
-			mho = null;
-			mhos.set(i, destCell);
-			cells[destCell.getX()][destCell.getY()] = new Mho(destCell.getX(), destCell.getY());
-			System.out.println("mho  => " + destCell.getX() + " : " + destCell.getY());
-		}		
-	}
 
-	private AbstractCell moveToAvailableCell(AbstractCell mho) {
-		AbstractCell destCell = findAvailableCell(mho);
-
-		/*if (destCell == null)
-			destCell = findCell(mho, "fence");*/
-
-		return destCell;
-	}
-
-	private AbstractCell findAvailableCell(AbstractCell mho) {
-
-		AbstractCell destCell = moveDiagonally(mho);
-
-		/*if (destCell == null)
-			destCell = findEmptyHorizontalOrVerticalCell(mho);*/
-
-		return destCell;
-	}
-
-	private AbstractCell moveDiagonally(AbstractCell mho) {
+	private void moveDiagonally(int i, Mho mho) {
 		
-		int row = 0;
-		int col = 0;
-		
-		AbstractCell cell = null;
+		int row = 0, col = 0;
 
-		if (smiley.getX() - mho.getX() > 0) {
-			row = mho.getX() + 1;
-		} else if (smiley.getX() - mho.getX() < 0)
-			row = mho.getX() - 1;
+		final Coordinate smileyPosition = smiley.getPosition(), mhoPosition = mho.getPosition();
 
-		if (smiley.getY() - mho.getY() > 0) {
-			col = mho.getY() + 1;
-		} else if (smiley.getY() - mho.getY() < 0) {
-			col = mho.getY() - 1;
+		if (smileyPosition.getX() - mhoPosition.getX() > 0) {
+			row = mhoPosition.getX() + 1;
+		} else if (smileyPosition.getX() - mhoPosition.getX() < 0) {
+			row = mhoPosition.getX() - 1;
+		}
+
+		if (smileyPosition.getY() - mhoPosition.getY() > 0) {
+			col = mhoPosition.getY() + 1;
+		} else if (smileyPosition.getY() - mhoPosition.getY() < 0) {
+			col = mhoPosition.getY() - 1;
 		}
 
 		if (cells[row][col] instanceof Smiley) {
-			killSmiley(mho, row, col);
+			killSmiley(mho, new Coordinate(row, col));
 		} else if (cells[row][col] instanceof Mho){
 			//Don't move
 		} else if (cells[row][col] == null) {
-			System.out.println("Found empty cell on diagonal -> "  + row + " , " + col);
-			move(mho, row, col);
-		} 
-		return cell;
+			move(mho, new Coordinate(row, col));
+			cells[mhoPosition.getX()][mhoPosition.getY()] = null;
+			cells[row][col] = mho;
+		}
 	}
 
 
-	private void killSmiley(AbstractCell mho, int row, int col) {
-		cells[mho.getX()][mho.getY()] = null;
-		mho.move(row, col);
+	private void killSmiley(Mho mho, Coordinate position) {
+
+		final Coordinate mhoPosition = mho.getPosition();
+
+		cells[mhoPosition.getX()][mhoPosition.getY()] = null;
+		mho.move(position);
 		gameOver();
-		cells[row][col] = new Mho(row,col);
+		cells[position.getX()][position.getY()] = new Mho(position);
 	}
 	
-	private void move(AbstractCell mho, int row, int col) {
-		cells[mho.getX()][mho.getY()] = null;
-		mho.move(row, col);
-		cells[row][col] = new Mho(row,col);
+	private void move(Mho mho, Coordinate newPosition) {
+
+		final Coordinate mhoPosition = mho.getPosition();
+
+		cells[mhoPosition.getX()][mhoPosition.getY()] = null;
+		mho.move(newPosition);
+		cells[newPosition.getX()][newPosition.getY()] = new Mho(newPosition);
 		
-		System.out.println("new mho position => " + row + " , " + col);
 	}
 	
 	private void gameOver() {
+
 		System.out.println("Game Over. You Lose!");
 		gameOver = true;
-		cells[smiley.getX()][smiley.getY()] = null;
+		final Coordinate smileyPosition = smiley.getPosition();
+		cells[smileyPosition.getX()][smileyPosition.getY()] = null;
 		smiley = null;
 		removeKeyListener(this);
 	}
@@ -447,17 +431,20 @@ public class GamePanel extends JComponent implements KeyListener {
 	}
 
 	private int getRandomCol() {
+
 		int y = ThreadLocalRandom.current().nextInt(1, COLS - 1);
 		return y;
 	}
 
 	private int getRandomRow() {
+
 		int x = ThreadLocalRandom.current().nextInt(1, ROWS - 1);
 		return x;
 	}
 
 
 	private void removeCell(Coordinate cell) {
+
 		emptyCoordinates.remove(cell);
 	}
 	
