@@ -28,14 +28,13 @@ public abstract class AbstractCell {
 		}
 	}
 
-	public void draw(final int x_offset, final int y_offset, final int width, final int height, Graphics g) {
+	public void draw(final int x_offset, final int y_offset, final int gap, final int width, final int height, Graphics g) {
 
         final int
-            top_x = x_offset + 1 + (c.getY() * (width  + 1)),
-            top_y = y_offset + 1 + (c.getX() * (height + 1));
+            top_x = x_offset + gap + (c.getY() * (width  + gap)),
+            top_y = y_offset + gap + (c.getX() * (height + gap));
 
-        g.fillRect(top_x, top_y, width, height);
-        g.drawImage(image.getScaledInstance(width, height, BufferedImage.SCALE_FAST), top_x, top_y, Color.black, null);
+        g.drawImage(image.getScaledInstance(width, height, BufferedImage.SCALE_FAST), top_x - gap/2, top_y - gap/2, Color.black, null);
     }
 
 	public Coordinate getPosition() {

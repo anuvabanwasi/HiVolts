@@ -25,16 +25,16 @@ public class GamePanel extends JComponent implements KeyListener {
 		COLS = 12;
 	
 	private static final int
-		NUM_OF_MHOS = 20,
-		NUM_OF_INTERIOR_FENCES = 12;
+		NUM_OF_MHOS = 12,
+		NUM_OF_INTERIOR_FENCES = 20;
 	
 	private final int
-		X_GRID_OFFSET = 25, // 25 pixels from left,
-		Y_GRID_OFFSET = 40; // 40 pixels from top
+		X_GRID_OFFSET = 20,
+		Y_GRID_OFFSET = 20;
 
 	private static AbstractCell[][] cells = new AbstractCell[ROWS][COLS];
 
-	private final int CELL_WIDTH = 60, CELL_HEIGHT = 60;
+	private final int CELL_WIDTH = 60, CELL_HEIGHT = 60, CELL_GAP = 10;
 
 	// Note that a final field can be initialized in constructor
 	private final int DISPLAY_WIDTH, DISPLAY_HEIGHT;
@@ -76,9 +76,6 @@ public class GamePanel extends JComponent implements KeyListener {
 		
 		// Set Exterior Electric Fences
 		initExteriorFences();
-			
-		// Set Smiley 
-		createSmiley(getRandomPosition());
 		
 		// Set Mho Cells
 		for(int i = 0; i < NUM_OF_MHOS; i++) {
@@ -87,24 +84,23 @@ public class GamePanel extends JComponent implements KeyListener {
 		
 		// Set Interior Electric Fences
 		initInteriorFences();
+
+		// Set Smiley
+		createSmiley(getRandomPosition());
 	}
 
 	private void initExteriorFences() {
 
 		for(int i = 0; i < COLS; i++) {
-			cells[0][i] = new Fence(new Coordinate(0 , i));
-			removeCell(new Coordinate(0, i));
-			
-			cells[ROWS-1][i] = new Fence(new Coordinate(ROWS-1, i));
-			removeCell(new Coordinate(ROWS-1, i));
+			cells[0][i] = createFence(new Coordinate(0 , i));
+
+			cells[ROWS-1][i] = createFence(new Coordinate(ROWS-1, i));
 		}
 		
 		for(int i = 0; i < ROWS; i++) {
-			cells[i][0] = new Fence(new Coordinate(i, 0));
-			removeCell(new Coordinate(i, 0));
-			
-			cells[i][ROWS-1] = new Fence(new Coordinate(i, ROWS-1));
-			removeCell(new Coordinate(i, ROWS-1));
+			cells[i][0] = createFence(new Coordinate(i, 0));
+
+			cells[i][ROWS-1] = createFence(new Coordinate(i, ROWS-1));
 		}
 	}
 
@@ -152,9 +148,9 @@ public class GamePanel extends JComponent implements KeyListener {
 	{
 		Coordinate cp = cell.getPosition();
 
-		cells[cp.getX()][cp.getY()] = cell;
+		emptyCoordinates.remove(cp);
 
-		removeCell(cp);
+		cells[cp.getX()][cp.getY()] = cell;
 	}
 
 	private void moveSmiley(KeyEvent e) {
@@ -198,7 +194,7 @@ public class GamePanel extends JComponent implements KeyListener {
 					break;
 
 				case KeyEvent.VK_S:
-					moveSmiley(row, col);
+					moveMhos();
 					break;
 
 				case KeyEvent.VK_D:
@@ -442,12 +438,6 @@ public class GamePanel extends JComponent implements KeyListener {
 		int x = ThreadLocalRandom.current().nextInt(1, ROWS - 1);
 		return x;
 	}
-
-
-	private void removeCell(Coordinate cell) {
-
-		emptyCoordinates.remove(cell);
-	}
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -481,7 +471,7 @@ public class GamePanel extends JComponent implements KeyListener {
 				// and width; it has been set up to know its own position, so
 				// that need not be passed as an argument to the draw method
 				if (cell != null)
-					cell.draw(X_GRID_OFFSET, Y_GRID_OFFSET, CELL_WIDTH, CELL_HEIGHT, g);
+					cell.draw(X_GRID_OFFSET, Y_GRID_OFFSET, CELL_GAP, CELL_WIDTH, CELL_HEIGHT, g);
 			}
 		}
 	}
@@ -489,7 +479,7 @@ public class GamePanel extends JComponent implements KeyListener {
 	private void drawGrid(Graphics g) {
 
 		g.setColor(Color.BLACK);
-		g.fillRect(X_GRID_OFFSET, Y_GRID_OFFSET, (CELL_WIDTH+1)*ROWS, (CELL_HEIGHT+1)*COLS);
+		g.fillRect(X_GRID_OFFSET, Y_GRID_OFFSET, (CELL_WIDTH+CELL_GAP)*ROWS, (CELL_HEIGHT+CELL_GAP)*COLS);
 
 		g.setColor(Color.DARK_GRAY);
 
@@ -497,18 +487,18 @@ public class GamePanel extends JComponent implements KeyListener {
 		for (int row = 0; row <= ROWS; row++) {
 			g.drawLine(
 				X_GRID_OFFSET,
-			Y_GRID_OFFSET + (row * (CELL_HEIGHT + 1)),
-			X_GRID_OFFSET + COLS * (CELL_WIDTH  + 1),
-			Y_GRID_OFFSET + (row * (CELL_HEIGHT + 1)));
+			Y_GRID_OFFSET + (row * (CELL_HEIGHT + CELL_GAP)),
+			X_GRID_OFFSET + COLS * (CELL_WIDTH  + CELL_GAP),
+			Y_GRID_OFFSET + (row * (CELL_HEIGHT + CELL_GAP)));
 		}
 
 		// Draw columns
 		for (int col = 0; col <= COLS; col++) {
 			g.drawLine(
-			X_GRID_OFFSET + (col * (CELL_WIDTH + 1)),
+			X_GRID_OFFSET + (col * (CELL_WIDTH + CELL_GAP)),
 				Y_GRID_OFFSET,
-			X_GRID_OFFSET + (col * (CELL_WIDTH  + 1)),
-			Y_GRID_OFFSET + ROWS * (CELL_HEIGHT + 1));
+			X_GRID_OFFSET + (col * (CELL_WIDTH  + CELL_GAP)),
+			Y_GRID_OFFSET + ROWS * (CELL_HEIGHT + CELL_GAP));
 		}
 	}
 
