@@ -50,6 +50,7 @@ public class GamePanel extends JComponent implements KeyListener {
 
 		DISPLAY_WIDTH = width;
 		DISPLAY_HEIGHT = height;
+
 		init();
 	}
 
@@ -454,16 +455,14 @@ public class GamePanel extends JComponent implements KeyListener {
 		repaint();
 	}
 	
-	@Override
-	public void keyReleased(KeyEvent e) {
-	}
+	@Override public void keyReleased(KeyEvent e) { }
 
-	@Override
-	public void keyTyped(KeyEvent e) {
-	}
+	@Override public void keyTyped(KeyEvent e) { }
 	
 	@Override
 	public void paintComponent(Graphics g) {
+
+		super.paintComponent(g);
 
 		g.setColor(Color.BLACK);
 		drawGrid(g);
