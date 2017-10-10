@@ -4,9 +4,9 @@
  */
 public class Smiley extends AbstractCell {
 
-    public Smiley(Coordinate c) {
+    public Smiley(Coordinate c, final int WIDTH, final int HEIGHT) {
 
-        super("smiley.png", c);
+        super("Smiley.png", c, WIDTH, HEIGHT);
     }
 
 }

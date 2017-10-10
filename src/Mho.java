@@ -4,8 +4,8 @@
  */
 public class Mho extends AbstractCell {
 
-    public Mho(Coordinate c) {
+    public Mho(Coordinate c, final int WIDTH, final int HEIGHT) {
 
-        super("Mho.png", c);
+        super("Mho.png", c, WIDTH, HEIGHT);
     }
 }

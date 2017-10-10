@@ -12,8 +12,6 @@ public class HomePanel extends JComponent implements KeyListener {
 
     private final String TOP_TEXT = "Welcome to HiVolts!", MIDDLE_TEXT = "Made by Anuva Banwasi and Quintin Dwight", BOTTOM_TEXT = "( press any key )";
 
-    private Font font;
-
     public HomePanel(final int DISPLAY_WIDTH, final int DISPLAY_HEIGHT) {
 
         this.DISPLAY_WIDTH = DISPLAY_WIDTH;
@@ -23,8 +21,6 @@ public class HomePanel extends JComponent implements KeyListener {
     }
 
     private void init() {
-
-        font = new Font("Verdana", Font.PLAIN, 24);
 
         setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
 
@@ -44,25 +40,36 @@ public class HomePanel extends JComponent implements KeyListener {
 
         g2.fillRect(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
 
-        g2.setFont(font);
-        FontMetrics fontMetrics = g2.getFontMetrics(font);
+        // Create big and small fonts as well as getting their metrics
+        final Font bigFont = new Font("Verdana", Font.PLAIN, 60), smallFont = new Font("Verdana", Font.PLAIN, 20);
+        final FontMetrics bigFontMetrics = g2.getFontMetrics(bigFont), smallFontMetrics = g2.getFontMetrics(smallFont);
 
         g2.setColor(Color.WHITE);
 
-        drawCenteredText(g2, fontMetrics, TOP_TEXT, -32);
-        drawCenteredText(g2, fontMetrics, MIDDLE_TEXT, 0);
-        drawCenteredText(g2, fontMetrics, BOTTOM_TEXT, +32);
+        g2.setFont(bigFont);
+        drawCenteredText(g2, bigFontMetrics, TOP_TEXT, -32);
+        g2.setFont(smallFont);
+        drawCenteredText(g2, smallFontMetrics, MIDDLE_TEXT, 0);
+        drawCenteredText(g2, smallFontMetrics, BOTTOM_TEXT, +32);
     }
 
-    private void drawCenteredText(Graphics2D g2, FontMetrics fm, String text, final int yoffset) {
+    /**
+     * Draw centered text
+     *
+     * @param g2 Graphics object used to draw
+     * @param fm Font metrics for the font, used to determine size of string
+     * @param text Text to display
+     * @param y_offset Vertical offset of the text
+     */
+    private void drawCenteredText(Graphics2D g2, FontMetrics fm, String text, final int y_offset) {
 
-        g2.drawString(text, DISPLAY_WIDTH/2 - fm.stringWidth(text)/2, DISPLAY_WIDTH/2 + yoffset);
+        g2.drawString(text, DISPLAY_WIDTH/2 - fm.stringWidth(text)/2, DISPLAY_WIDTH/2 + y_offset);
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
 
-        Main.keyPressedOnHome();
+        GameManager.keyPressedOnHome();
     }
 
     @Override public void keyTyped(KeyEvent e) {}
