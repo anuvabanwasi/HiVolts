@@ -1,0 +1,56 @@
+﻿HiVolts ReadMe
+
+
+Introduction/Requirements: The Hivolts project as described in paleyontology.com is a 1970s game with a grid which can have a Smiley, Mhos and electric fences. The objective of the game is to eliminate all the Mhos before the Smiley gets eaten by Mhos or electric fences. There are rules on how Mhos and the Smiley can move between the cells on the grid. 
+Detailed requirements: http://paleyontology.com/AP_CS/hivolts/
+
+
+Team: Anuva Banwasi and Quintin Dwight
+
+
+Usage: 
+1. Download the executable hivolts.jar jar file from https://github.com/anuvabanwasi/HiVolts to a computer that has java installed
+2. Open command line terminal and run the below commands on the command line
+   1. 1. cd <path to where jar file is downloaded>
+   2. 2. java - jar hivolts.jar
+
+
+What does the application do?  
+The program consists of 10 java classes: AbstractCell, Coordinate, Fence, GameManager, GameOverPanel, GamePanel, HomePanel, Main, Mho, Smiley.
+
+
+The Main class consists of the main method that initializes the GameManager
+The GameManager class Creates the JFrame and initializes all of the components for the game
+The GamePanel class draws the game field and holds logic for game pieces. This is the critical class that implements the majority of the Game Logic using KeyListener, KeyEvents, ArrayLists and 2D Arrays to map function keys to events and draw and move Smiley & Mhos. One important note is that we do not retry to keep drawing the board till there is no overlap. We keep track of all the cells that are already allocated and try to randomly allocate free cells to Mhos, Smiley and Electric Fence. In addition we employ 2D Arrays in some effective algorithms to move, jump, kill Smiley or Mhos as applicable. Our extensive testing shows that we have implemented all requirements of the game. Although we did think of using ArrayLists for our game logic we settled on 2D arrays since we could use the Row and Column concept of 2D arrays to effectively decide how to move the characters. Using an ArrayList would have made this overly complicated since we would have to keep track of the index of the ArrayList and add/delete the index. Adding or deleting indexes of ArrayList would expose the risk of buggy code and hard to keep track of the exact state of the game at any given moment.
+
+
+AbstractCell is the data structure that corresponds to each Cell in the Grid. It has methods that allows the program to know the Coordinate of each Cell. AbstractCell also contains the important draw Image method.
+Coordinate class holds the x and y position of each cell.
+The rest of the classes Fence, Mho, Smiley are mostly self explanatory. They are classes that represent an Electric Fence, Mho and Smiley respectively.  
+
+
+
+
+What does the application does not do?
+Since the application implements all the requirements of the specifications of the game the one area which we could do is maybe go back and refactor some parts of the code such as maybe a better way to integrate the HomePanel, GamePanel and GameOverPanel so instead of having different classes for each function based on the what is needed dynamically the program can decide what to do - Draw Home, Game or GameOver based on the state of the game.
+
+
+Projects Goals and Milestones
+We divided up the project into the following phases:
+1) Planning/Research - 0.5 weeks - Sep 18th to Sept 20th
+2) Brainstorm Ideas/Design/Plan - 0.5 Weeks - Sep 21st to Sep 24th
+3) Develop/Implement + Iterative Testing - 1.5 weeks - Sep 25th to Oct 5th
+4) Fix bugs - 0.5 weeks - Oct 5th to Oct 7th
+5) Documentation, ReadMe, Project Report - 0.5 weeks - Oct 7th to Oct 10th
+6) Review all work, tweak ReadMe, Project Report - 2 days - Oct 11th and Oct 12th
+
+
+We were mostly able to follow the project plan above. Since till Oct 10th we were still in implementation, testing and iteration mode we did not start code documentation and project read me till the end (Oct 10th). Also we used GitHub effectively so both of us at any point had a local copy of the latest source code synced up. This ensured that we did not run into code conflicts. Also both of divided up the requirements so Anuva worked on 1, 2.1, 2.2 and 2.3 and Quintin worked on 2.4 and 2.5. Anuva worked on most of the core logic and game handling (GamePanel) and Qunitin made sure we had user friendly features such as images, user feedback (GameOver Panel) and game instruction panels.
+
+
+Learnings
+We learned how to work on a team and coordinate with each other. From the outset we decided who will work on what parts of the game and we communicated with each other on each step of the way. We also made sure to check in our changes to Git at the end of the day so the next day we could pick up where we left off by syncing our code. Instead of using 20 Mhos and 12 Electric Fences we started with just 2 electric fences and 2 Mhos so we could test all the different combinations of moves and countermoves. This approach allowed us to find bugs and fix them at the same time we were implementing the logic. For example we first implemented the vertical Mhos movement towards Smiley and tested that thoroughly before we went on to horizontal movement. The most complicated part of the game was to avoid Mhos overlapping against each other especially if they were juxtaposed with each other. We solved this problem by checking in order of movement whether there is an existing Mho before moving it. GamePanel is a rather large class so in a future iteration we could break it up into two or three classes.
+
+
+Acknowledgements
+We would like to thank paleyontology.com for the ideas on the Conway Game of Life. Using that we were able to get started on the Grid and Cells of the Grid. We would also like to Thank Mr. Kuszmaul for having us do the Flag project before this, so for the HiVolts we knew in advance how to use Java Swing and AWT Panels to set up the application.
