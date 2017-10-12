@@ -346,123 +346,70 @@ public class GamePanel extends JComponent implements KeyListener {
 			for (int i = 0; i < mhos.size() && !gameOver; i++) {
 
 				Mho mho = mhos.get(i);
-
 				Coordinate mhoPosition = mho.getPosition();
 
-				// mho and smiley are in same row
 				if (mhoPosition.x == smileyPosition.x) {
-					moveHorizontally(i, mho);
-				} 
-				// mho and smiley are in same column
-				else if (mhoPosition.y == smileyPosition.y) {
-					moveVertically(i, mho);
-				}
-				else {
-					moveDiagonally(i, mho);
+					// Mho and smiley are in same row
+					moveMhoSameAxis(i, mho, false);
+				} else if (mhoPosition.y == smileyPosition.y) {
+					// Mho and smiley are in same column
+					moveMhoSameAxis(i, mho, true);
+				} else {
+					// Have to move diagonally to get to smiley
+					moveMhoDiagonally(i, mho, true);
 				}
 			}
 		}
 	}
 
 	/**
-	 * Attempt to move the mho vertically.
+	 * Attempt to move the mho when it is in the same axis as the smiley.
 	 *
-	 * @param i Index of the mho in the array
+	 * @param mhoIndex Index of the mho in the array
 	 * @param mho Mho to move
+	 * @param vertical Whether or not the mho and the player are vertically aligned. If not, then they are horizontally aligned.
 	 */
-	private void moveVertically(int i, Mho mho) {
-
-		int row, col;
+	private void moveMhoSameAxis(final int mhoIndex, Mho mho, final boolean vertical) {
 
 		final Coordinate mhoPosition = mho.getPosition(), smileyPosition = smiley.getPosition();
-		
-		if (mhoPosition.x < smileyPosition.x) {
-			row = mhoPosition.x + 1;
-			col = mhoPosition.y;
-		} else {
-			row = mhoPosition.x - 1;
-			col = mhoPosition.y;
-		}
-		
-		if (cells[row][col] instanceof Fence) {
-			cells[mhoPosition.x][mhoPosition.y] = null;
-			mhos.remove(i);
-		}
-		else if(cells[row][col] instanceof Smiley) {
-			killSmiley(mho, new Coordinate(row, col));
-		} else if(cells[row][col] instanceof Mho) {
-			// Don't moveMho
-		} else {
-			moveMho(mho, new Coordinate(row, col));
-		}
-	}
+		Coordinate newPosition = new Coordinate(mhoPosition.x, mhoPosition.y);
 
-	/**
-	 * Attempt to move the mho horizontally.
-	 *
-	 * @param i Index of the mho in the array
-	 * @param mho Mho to move
-	 */
-	private void moveHorizontally(int i, Mho mho) {
+		if ( vertical) newPosition.x += mhoPosition.x < smileyPosition.x ? 1 : -1;
+		if (!vertical) newPosition.y += mhoPosition.y < smileyPosition.y ? 1 : -1;
 
-		int row;
-		int col;
-
-		final Coordinate mhoPosition = mho.getPosition(), smileyPosition = smiley.getPosition();
-
-		if (mhoPosition.y < smileyPosition.y) {
-			row = mhoPosition.x;
-			col = mhoPosition.y + 1;
-		} else {
-			row = mhoPosition.x;
-			col = mhoPosition.y - 1;
-		}
-				
-		if (cells[row][col] instanceof Fence) {
-			cells[mhoPosition.x][mhoPosition.y] = null;
-			mhos.remove(i);
-		}
-		else if(cells[row][col] instanceof Smiley){
-			killSmiley(mho, new Coordinate(row, col));
-		} else if(cells[row][col] instanceof Mho){
-			// Don't moveMho
-		} else{
-			moveMho(mho, new Coordinate(row, col));
-		}
+		moveMho(mho, mhoIndex, newPosition);
 	}
 
 	/**
 	 * Attempt to move the mho diagonally.
 	 *
-	 * @param i Index of the mho in the array
+	 * @param mhoIndex Index of the mho in the array
 	 * @param mho Mho to move
+	 * @param careful Whether or not to be careful
 	 */
-	private void moveDiagonally(int i, Mho mho) {
-		
-		int row = 0, col = 0;
+	private void moveMhoDiagonally(final int mhoIndex, Mho mho, final boolean careful) {
 
 		final Coordinate smileyPosition = smiley.getPosition(), mhoPosition = mho.getPosition();
 
-		if (smileyPosition.x - mhoPosition.x > 0) {
-			row = mhoPosition.x + 1;
-		} else if (smileyPosition.x - mhoPosition.x < 0) {
-			row = mhoPosition.x - 1;
-		}
+		Coordinate targetPosition = new Coordinate(mhoPosition.x, mhoPosition.y);
 
-		if (smileyPosition.y - mhoPosition.y > 0) {
-			col = mhoPosition.y + 1;
-		} else if (smileyPosition.y - mhoPosition.y < 0) {
-			col = mhoPosition.y - 1;
-		}
+		// Difference between x and y coordinates
+		int dx = smileyPosition.x - mhoPosition.x, dy = smileyPosition.y - mhoPosition.y;
 
-		if (cells[row][col] instanceof Smiley) {
-			killSmiley(mho, new Coordinate(row, col));
-		} else if (cells[row][col] instanceof Mho){
-			//Don't moveMho
-		} else if (cells[row][col] == null) {
-			moveMho(mho, new Coordinate(row, col));
-			cells[mhoPosition.x][mhoPosition.y] = null;
-			cells[row][col] = mho;
+		if (dx > 0)
+			targetPosition.x += 1;
+		else if (dx < 0)
+			targetPosition.x -= 1;
+
+		if (dy > 0)
+			targetPosition.y += 1;
+		else if (dy < 0)
+			targetPosition.y -= 1;
+
+		if (cells[targetPosition.x][targetPosition.y] == null || !careful) {
+			moveMho(mho, mhoIndex, targetPosition);
+		} else {
+			moveMhoDiagonally(mhoIndex, mho, false);
 		}
 	}
 
@@ -483,21 +430,49 @@ public class GamePanel extends JComponent implements KeyListener {
 	}
 
 	/**
-	 * Move the mho and update the array.
+	 * Moves the mho appropriately.
+	 * The mho will do the following:
+	 * <br>
+	 * <ul>
+	 *     <li>Move to an empty space</li>
+	 *     <li>Move onto and kill the smiley</li>
+	 *     <li>Land on an electric fence and die</li>
+	 * </ul>
 	 *
 	 * @param mho Mho to move
+	 * @param mhoIndex Index of the mho in the array of mhos
 	 * @param newPosition New position
 	 */
-	private void moveMho(Mho mho, Coordinate newPosition) {
+	private void moveMho(Mho mho, final int mhoIndex, final Coordinate newPosition) {
 
 		final Coordinate mhoPosition = mho.getPosition();
 
-		cells[mhoPosition.x][mhoPosition.y] = null;
-		mho.move(newPosition);
-		cells[newPosition.x][newPosition.y] = mho;
-		
+		AbstractCell movingToCell = cells[newPosition.x][newPosition.y];
+
+		if (movingToCell == null) {
+
+			// Moving to empty square
+			cells[mhoPosition.x][mhoPosition.y] = null;
+			mho.move(newPosition);
+			cells[newPosition.x][newPosition.y] = mho;
+
+		} else if (movingToCell instanceof Smiley) {
+
+			// Move onto smiley and kill it
+			killSmiley(mho, newPosition);
+
+		} else if (movingToCell instanceof Fence) {
+
+			// Moving onto fence, kills mho
+			cells[mhoPosition.x][mhoPosition.y] = null;
+			mhos.remove(mhoIndex);
+
+		}
 	}
-	
+
+	/**
+	 * Triggered when the game is over.
+	 */
 	private void gameOver() {
 
 		gameOver = true;
