@@ -1,3 +1,8 @@
+/**
+ * Home panel, opens when you first start the application.
+ *
+ * @author Quintin Dwight
+ */
 public class HomePanel extends TextPanel {
 
     public HomePanel(final int DISPLAY_WIDTH, final int DISPLAY_HEIGHT) {

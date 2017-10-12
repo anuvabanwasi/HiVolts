@@ -211,7 +211,7 @@ public class GamePanel extends JComponent implements KeyListener {
 
 		Coordinate cp = cell.getPosition();
 
-		cells[cp.getX()][cp.getY()] = cell;
+		cells[cp.x][cp.y] = cell;
 	}
 
 	/**
@@ -224,7 +224,7 @@ public class GamePanel extends JComponent implements KeyListener {
 		if (!gameOver) {
 
 			Coordinate cp = smiley.getPosition();
-			int row = cp.getX(), col = cp.getY();
+			int row = cp.x, col = cp.y;
 			int c = e.getKeyCode();
 
 			switch (c) {
@@ -319,7 +319,7 @@ public class GamePanel extends JComponent implements KeyListener {
 	 */
 	private void updateGameBoard(final Coordinate c) {
 
-		final int sx = c.getX(), sy = c.getY();
+		final int sx = c.x, sy = c.y;
 
 		if (cells[sx][sy] instanceof Fence) {
 			gameOver();
@@ -328,7 +328,7 @@ public class GamePanel extends JComponent implements KeyListener {
 		} else if (cells[sx][sy] == null) {
 			// first reset current cell, then moveMho to next position, assign smiley at that position
 			Coordinate smileyPosition = smiley.getPosition();
-			cells[smileyPosition.getX()][smileyPosition.getY()] = null;
+			cells[smileyPosition.x][smileyPosition.y] = null;
 			smiley.move(c);
 			cells[sx][sy] = smiley;
 		}
@@ -350,11 +350,11 @@ public class GamePanel extends JComponent implements KeyListener {
 				Coordinate mhoPosition = mho.getPosition();
 
 				// mho and smiley are in same row
-				if (mhoPosition.getX() == smileyPosition.getX()) {
+				if (mhoPosition.x == smileyPosition.x) {
 					moveHorizontally(i, mho);
 				} 
 				// mho and smiley are in same column
-				else if (mhoPosition.getY() == smileyPosition.getY()) {
+				else if (mhoPosition.y == smileyPosition.y) {
 					moveVertically(i, mho);
 				}
 				else {
@@ -376,16 +376,16 @@ public class GamePanel extends JComponent implements KeyListener {
 
 		final Coordinate mhoPosition = mho.getPosition(), smileyPosition = smiley.getPosition();
 		
-		if (mhoPosition.getX() < smileyPosition.getX()) {
-			row = mhoPosition.getX() + 1;
-			col = mhoPosition.getY();
+		if (mhoPosition.x < smileyPosition.x) {
+			row = mhoPosition.x + 1;
+			col = mhoPosition.y;
 		} else {
-			row = mhoPosition.getX() - 1;
-			col = mhoPosition.getY();
+			row = mhoPosition.x - 1;
+			col = mhoPosition.y;
 		}
 		
 		if (cells[row][col] instanceof Fence) {
-			cells[mhoPosition.getX()][mhoPosition.getY()] = null;
+			cells[mhoPosition.x][mhoPosition.y] = null;
 			mhos.remove(i);
 		}
 		else if(cells[row][col] instanceof Smiley) {
@@ -410,16 +410,16 @@ public class GamePanel extends JComponent implements KeyListener {
 
 		final Coordinate mhoPosition = mho.getPosition(), smileyPosition = smiley.getPosition();
 
-		if (mhoPosition.getY() < smileyPosition.getY()) {
-			row = mhoPosition.getX();
-			col = mhoPosition.getY() + 1;
+		if (mhoPosition.y < smileyPosition.y) {
+			row = mhoPosition.x;
+			col = mhoPosition.y + 1;
 		} else {
-			row = mhoPosition.getX();
-			col = mhoPosition.getY() - 1;
+			row = mhoPosition.x;
+			col = mhoPosition.y - 1;
 		}
 				
 		if (cells[row][col] instanceof Fence) {
-			cells[mhoPosition.getX()][mhoPosition.getY()] = null;
+			cells[mhoPosition.x][mhoPosition.y] = null;
 			mhos.remove(i);
 		}
 		else if(cells[row][col] instanceof Smiley){
@@ -443,16 +443,16 @@ public class GamePanel extends JComponent implements KeyListener {
 
 		final Coordinate smileyPosition = smiley.getPosition(), mhoPosition = mho.getPosition();
 
-		if (smileyPosition.getX() - mhoPosition.getX() > 0) {
-			row = mhoPosition.getX() + 1;
-		} else if (smileyPosition.getX() - mhoPosition.getX() < 0) {
-			row = mhoPosition.getX() - 1;
+		if (smileyPosition.x - mhoPosition.x > 0) {
+			row = mhoPosition.x + 1;
+		} else if (smileyPosition.x - mhoPosition.x < 0) {
+			row = mhoPosition.x - 1;
 		}
 
-		if (smileyPosition.getY() - mhoPosition.getY() > 0) {
-			col = mhoPosition.getY() + 1;
-		} else if (smileyPosition.getY() - mhoPosition.getY() < 0) {
-			col = mhoPosition.getY() - 1;
+		if (smileyPosition.y - mhoPosition.y > 0) {
+			col = mhoPosition.y + 1;
+		} else if (smileyPosition.y - mhoPosition.y < 0) {
+			col = mhoPosition.y - 1;
 		}
 
 		if (cells[row][col] instanceof Smiley) {
@@ -461,7 +461,7 @@ public class GamePanel extends JComponent implements KeyListener {
 			//Don't moveMho
 		} else if (cells[row][col] == null) {
 			moveMho(mho, new Coordinate(row, col));
-			cells[mhoPosition.getX()][mhoPosition.getY()] = null;
+			cells[mhoPosition.x][mhoPosition.y] = null;
 			cells[row][col] = mho;
 		}
 	}
@@ -476,10 +476,10 @@ public class GamePanel extends JComponent implements KeyListener {
 
 		final Coordinate mhoPosition = mho.getPosition();
 
-		cells[mhoPosition.getX()][mhoPosition.getY()] = null;
+		cells[mhoPosition.x][mhoPosition.y] = null;
 		mho.move(position);
 		gameOver();
-		cells[position.getX()][position.getY()] = mho;
+		cells[position.x][position.y] = mho;
 	}
 
 	/**
@@ -492,9 +492,9 @@ public class GamePanel extends JComponent implements KeyListener {
 
 		final Coordinate mhoPosition = mho.getPosition();
 
-		cells[mhoPosition.getX()][mhoPosition.getY()] = null;
+		cells[mhoPosition.x][mhoPosition.y] = null;
 		mho.move(newPosition);
-		cells[newPosition.getX()][newPosition.getY()] = mho;
+		cells[newPosition.x][newPosition.y] = mho;
 		
 	}
 	

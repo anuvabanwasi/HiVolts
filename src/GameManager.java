@@ -39,6 +39,10 @@ public class GameManager {
         homePanel.requestFocusInWindow();
     }
 
+    /**
+     * Called from the home panel when any key is pressed.
+     * Transitions from the home panel to the game panel.
+     */
     public static void keyPressedOnHome() {
 
         f.remove(homePanel);
@@ -52,6 +56,10 @@ public class GameManager {
         gamePanel.requestFocusInWindow();
     }
 
+    /**
+     * Called from the game over panel when any key is pressed.
+     * Transitions from the game over panel to the home panel.
+     */
     public static void keyPressedOnGameOver() {
 
         f.remove(gameOverPanel);
@@ -64,6 +72,10 @@ public class GameManager {
         homePanel.requestFocusInWindow();
     }
 
+    /**
+     * Game over, called from the game panel.
+     * Transitions from the game panel to the game over panel.
+     */
     public static void gameOver() {
 
         f.remove(gamePanel);

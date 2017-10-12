@@ -1,3 +1,8 @@
+/**
+ * Game over panel, shows when you die.
+ *
+ * @author Quintin Dwight
+ */
 public class GameOverPanel extends TextPanel {
 
     public GameOverPanel(final int DISPLAY_WIDTH, final int DISPLAY_HEIGHT) {

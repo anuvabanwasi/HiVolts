@@ -9,7 +9,6 @@ import javax.imageio.ImageIO;
 /**
  * @author Quintin Dwight
  * @author Anuva Banwasi
- *
  */
 public abstract class AbstractCell {
 
@@ -42,8 +41,8 @@ public abstract class AbstractCell {
 
 		// Calculate x and y coordinates of image factoring in grid gap and size
         final int
-            X = X_OFFSET + GAP + (c.getY() * (WIDTH  + GAP)),
-            Y = Y_OFFSET + GAP + (c.getX() * (HEIGHT + GAP));
+            X = X_OFFSET + GAP + (c.y * (WIDTH  + GAP)),
+            Y = Y_OFFSET + GAP + (c.x * (HEIGHT + GAP));
 
         // Draw image in the center of the grid
         g2.drawImage(image, X - GAP/2, Y - GAP/2, Color.black, null);

@@ -2,17 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d07e86ed-232c-4a8b-9f05-437b5793312d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/TextPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/production/HiVolts/AbstractCell.class" afterPath="$PROJECT_DIR$/bin/production/HiVolts/AbstractCell.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/production/HiVolts/GameManager.class" afterPath="$PROJECT_DIR$/bin/production/HiVolts/GameManager.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/production/HiVolts/GameOverPanel.class" afterPath="$PROJECT_DIR$/bin/production/HiVolts/GameOverPanel.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/production/HiVolts/GamePanel.class" afterPath="$PROJECT_DIR$/bin/production/HiVolts/GamePanel.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/production/HiVolts/HomePanel.class" afterPath="$PROJECT_DIR$/bin/production/HiVolts/HomePanel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/production/HiVolts/Main.class" afterPath="$PROJECT_DIR$/bin/production/HiVolts/Main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AbstractCell.java" afterPath="$PROJECT_DIR$/src/AbstractCell.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Coordinate.java" afterPath="$PROJECT_DIR$/src/Coordinate.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GameManager.java" afterPath="$PROJECT_DIR$/src/GameManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GameOverPanel.java" afterPath="$PROJECT_DIR$/src/GameOverPanel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GamePanel.java" afterPath="$PROJECT_DIR$/src/GamePanel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/HomePanel.java" afterPath="$PROJECT_DIR$/src/HomePanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Smiley.java" afterPath="$PROJECT_DIR$/src/Smiley.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,33 +26,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Smiley.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Smiley.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GamePanel.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GamePanel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GamePanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="69" column="9" lean-forward="true" selection-start-line="69" selection-start-column="9" selection-end-line="69" selection-end-column="9" />
+            <state relative-caret-position="191">
+              <caret line="479" column="27" lean-forward="true" selection-start-line="479" selection-start-column="27" selection-end-line="479" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#GamePanel#0;class#GamePanel#0" expanded="false" />
                 <element signature="method#createMho#0;class#GamePanel#0" expanded="false" />
                 <element signature="method#createFence#0;class#GamePanel#0" expanded="false" />
-                <element signature="method#updateGameBoard#1;class#GamePanel#0" expanded="false" />
-                <element signature="method#moveMhos#0;class#GamePanel#0" expanded="false" />
-                <element signature="method#moveVertically#0;class#GamePanel#0" expanded="false" />
-                <element signature="method#moveHorizontally#0;class#GamePanel#0" expanded="false" />
-                <element signature="method#moveDiagonally#0;class#GamePanel#0" expanded="false" />
-                <element signature="method#killSmiley#0;class#GamePanel#0" expanded="false" />
-                <element signature="method#moveMho#0;class#GamePanel#0" expanded="false" />
                 <element signature="method#getRandomPlacePosition#0;class#GamePanel#0" expanded="false" />
                 <element signature="method#getRandomJunpPosition#0;class#GamePanel#0" expanded="false" />
                 <element signature="method#paintComponent#0;class#GamePanel#0" expanded="false" />
@@ -63,8 +49,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state relative-caret-position="135">
+              <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -73,8 +59,8 @@
       <file leaf-file-name="GameManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="67" column="0" lean-forward="true" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+            <state relative-caret-position="-1">
+              <caret line="0" column="21" lean-forward="true" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -83,8 +69,8 @@
       <file leaf-file-name="HomePanel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/HomePanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+            <state relative-caret-position="150">
+              <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -93,8 +79,8 @@
       <file leaf-file-name="GameOverPanel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameOverPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="46" lean-forward="true" selection-start-line="0" selection-start-column="46" selection-end-line="0" selection-end-column="46" />
+            <state relative-caret-position="270">
+              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -103,11 +89,21 @@
       <file leaf-file-name="TextPanel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TextPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="27" column="39" lean-forward="true" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
+            <state relative-caret-position="90">
+              <caret line="6" column="41" lean-forward="true" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Coordinate.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Coordinate.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -132,11 +128,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AbstractCell.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AbstractCell.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AbstractCell.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-18">
-              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state relative-caret-position="170">
+              <caret line="44" column="35" lean-forward="false" selection-start-line="44" selection-start-column="35" selection-end-line="44" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -179,17 +175,17 @@
         <option value="$PROJECT_DIR$/src/HiVoltsPanel.java" />
         <option value="$PROJECT_DIR$/src/Cell.java" />
         <option value="$PROJECT_DIR$/src/Player.java" />
-        <option value="$PROJECT_DIR$/src/Coordinate.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
-        <option value="$PROJECT_DIR$/src/AbstractCell.java" />
         <option value="$PROJECT_DIR$/src/Mho.java" />
         <option value="$PROJECT_DIR$/src/Fence.java" />
-        <option value="$PROJECT_DIR$/src/HomePanel.java" />
         <option value="$PROJECT_DIR$/src/Smiley.java" />
+        <option value="$PROJECT_DIR$/src/TextPanel.java" />
+        <option value="$PROJECT_DIR$/src/HomePanel.java" />
         <option value="$PROJECT_DIR$/src/GameOverPanel.java" />
         <option value="$PROJECT_DIR$/src/GameManager.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/Coordinate.java" />
+        <option value="$PROJECT_DIR$/src/AbstractCell.java" />
         <option value="$PROJECT_DIR$/src/GamePanel.java" />
-        <option value="$PROJECT_DIR$/src/TextPanel.java" />
       </list>
     </option>
   </component>
@@ -383,7 +379,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3270936" sideWeight="0.475" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32648125" sideWeight="0.475" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -391,16 +387,16 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32769045" sideWeight="0.4609375" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32847425" sideWeight="0.48072916" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32769045" sideWeight="0.48072916" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16523606" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16523606" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39901477" sideWeight="0.4875" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39782345" sideWeight="0.4875" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -408,41 +404,21 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32906404" sideWeight="0.48958334" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32906404" sideWeight="0.5104167" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39901477" sideWeight="0.4875" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3270936" sideWeight="0.475" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32769045" sideWeight="0.4609375" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32847425" sideWeight="0.48072916" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16523606" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32906404" sideWeight="0.48958334" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="25" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/GamePanel.java</url>
+          <line>223</line>
+          <properties />
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="33" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -460,13 +436,6 @@
             <element signature="method#GamePanel#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createMho#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createFence#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#updateGameBoard#1;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveMhos#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveVertically#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveHorizontally#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveDiagonally#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#killSmiley#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveMho#0;class#GamePanel#0" expanded="false" />
             <element signature="method#getRandomPlacePosition#0;class#GamePanel#0" expanded="false" />
             <element signature="method#getRandomJunpPosition#0;class#GamePanel#0" expanded="false" />
             <element signature="method#paintComponent#0;class#GamePanel#0" expanded="false" />
@@ -528,13 +497,6 @@
             <element signature="method#GamePanel#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createMho#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createFence#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#updateGameBoard#1;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveMhos#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveVertically#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveHorizontally#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveDiagonally#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#killSmiley#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveMho#0;class#GamePanel#0" expanded="false" />
             <element signature="method#getRandomPlacePosition#0;class#GamePanel#0" expanded="false" />
             <element signature="method#getRandomJunpPosition#0;class#GamePanel#0" expanded="false" />
             <element signature="method#paintComponent#0;class#GamePanel#0" expanded="false" />
@@ -553,13 +515,6 @@
             <element signature="method#GamePanel#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createMho#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createFence#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#updateGameBoard#1;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveMhos#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveVertically#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveHorizontally#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveDiagonally#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#killSmiley#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveMho#0;class#GamePanel#0" expanded="false" />
             <element signature="method#getRandomPlacePosition#0;class#GamePanel#0" expanded="false" />
             <element signature="method#getRandomJunpPosition#0;class#GamePanel#0" expanded="false" />
             <element signature="method#paintComponent#0;class#GamePanel#0" expanded="false" />
@@ -620,13 +575,6 @@
             <element signature="method#GamePanel#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createMho#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createFence#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#updateGameBoard#1;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveMhos#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveVertically#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveHorizontally#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveDiagonally#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#killSmiley#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveMho#0;class#GamePanel#0" expanded="false" />
             <element signature="method#getRandomPlacePosition#0;class#GamePanel#0" expanded="false" />
             <element signature="method#getRandomJunpPosition#0;class#GamePanel#0" expanded="false" />
             <element signature="method#paintComponent#0;class#GamePanel#0" expanded="false" />
@@ -697,13 +645,6 @@
             <element signature="method#GamePanel#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createMho#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createFence#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#updateGameBoard#1;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveMhos#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveVertically#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveHorizontally#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveDiagonally#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#killSmiley#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveMho#0;class#GamePanel#0" expanded="false" />
             <element signature="method#getRandomPlacePosition#0;class#GamePanel#0" expanded="false" />
             <element signature="method#getRandomJunpPosition#0;class#GamePanel#0" expanded="false" />
             <element signature="method#paintComponent#0;class#GamePanel#0" expanded="false" />
@@ -741,13 +682,6 @@
             <element signature="method#GamePanel#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createMho#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createFence#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#updateGameBoard#1;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveMhos#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveVertically#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveHorizontally#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveDiagonally#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#killSmiley#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveMho#0;class#GamePanel#0" expanded="false" />
             <element signature="method#getRandomPlacePosition#0;class#GamePanel#0" expanded="false" />
             <element signature="method#getRandomJunpPosition#0;class#GamePanel#0" expanded="false" />
             <element signature="method#paintComponent#0;class#GamePanel#0" expanded="false" />
@@ -785,13 +719,6 @@
             <element signature="method#GamePanel#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createMho#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createFence#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#updateGameBoard#1;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveMhos#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveVertically#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveHorizontally#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveDiagonally#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#killSmiley#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveMho#0;class#GamePanel#0" expanded="false" />
             <element signature="method#getRandomPlacePosition#0;class#GamePanel#0" expanded="false" />
             <element signature="method#getRandomJunpPosition#0;class#GamePanel#0" expanded="false" />
             <element signature="method#paintComponent#0;class#GamePanel#0" expanded="false" />
@@ -814,14 +741,6 @@
     <entry file="file://$PROJECT_DIR$/ProgressReport.txt" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home/src.zip!/java/lang/Object.java" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home/src.zip!/java/util/ArrayList.java" />
-    <entry file="file://$PROJECT_DIR$/src/Coordinate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="19" column="4" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/Fence.xcf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -834,73 +753,6 @@
         <state relative-caret-position="165">
           <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameOverPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="46" lean-forward="true" selection-start-line="0" selection-start-column="46" selection-end-line="0" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="67" column="0" lean-forward="true" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GamePanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="69" column="9" lean-forward="true" selection-start-line="69" selection-start-column="9" selection-end-line="69" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#GamePanel#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#createMho#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#createFence#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#updateGameBoard#1;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveMhos#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveVertically#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveHorizontally#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveDiagonally#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#killSmiley#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#moveMho#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#getRandomPlacePosition#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#getRandomJunpPosition#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#paintComponent#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#drawCells#0;class#GamePanel#0" expanded="false" />
-            <element signature="method#drawGrid#0;class#GamePanel#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/HomePanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TextPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="27" column="39" lean-forward="true" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -920,12 +772,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AbstractCell.java">
+    <entry file="file://$PROJECT_DIR$/src/GameOverPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-18">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        <state relative-caret-position="270">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/HomePanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1">
+          <caret line="0" column="21" lean-forward="true" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TextPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="41" lean-forward="true" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Coordinate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AbstractCell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="44" column="35" lean-forward="false" selection-start-line="44" selection-start-column="35" selection-end-line="44" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GamePanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="479" column="27" lean-forward="true" selection-start-line="479" selection-start-column="27" selection-end-line="479" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#GamePanel#0;class#GamePanel#0" expanded="false" />
+            <element signature="method#createMho#0;class#GamePanel#0" expanded="false" />
+            <element signature="method#createFence#0;class#GamePanel#0" expanded="false" />
+            <element signature="method#getRandomPlacePosition#0;class#GamePanel#0" expanded="false" />
+            <element signature="method#getRandomJunpPosition#0;class#GamePanel#0" expanded="false" />
+            <element signature="method#paintComponent#0;class#GamePanel#0" expanded="false" />
+            <element signature="method#drawCells#0;class#GamePanel#0" expanded="false" />
+            <element signature="method#drawGrid#0;class#GamePanel#0" expanded="false" />
           </folding>
         </state>
       </provider>
