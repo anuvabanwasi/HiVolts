@@ -8,5 +8,4 @@ public class Smiley extends AbstractCell {
 
         super("Smiley.png", c, WIDTH, HEIGHT);
     }
-
 }

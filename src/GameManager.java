@@ -8,6 +8,7 @@ import javax.swing.*;
 public class GameManager {
 
     private static HomePanel homePanel;
+    private static GameOverPanel gameOverPanel;
     private static GamePanel gamePanel;
     private static JFrame f;
 
@@ -26,8 +27,11 @@ public class GameManager {
 
         homePanel = new HomePanel(DISPLAY_WIDTH, DISPLAY_HEIGHT);
         f.add(homePanel);
+        homePanel.addKeyListener(homePanel);
 
         gamePanel = new GamePanel(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+
+        gameOverPanel = new GameOverPanel(DISPLAY_WIDTH, DISPLAY_HEIGHT);
 
         f.setVisible(true);
         f.requestFocusInWindow();
@@ -38,9 +42,37 @@ public class GameManager {
     public static void keyPressedOnHome() {
 
         f.remove(homePanel);
+        homePanel.removeKeyListener(homePanel);
 
         f.add(gamePanel);
+        gamePanel.restart();
+        gamePanel.addKeyListener(gamePanel);
+        gamePanel.repaint();
 
         gamePanel.requestFocusInWindow();
+    }
+
+    public static void keyPressedOnGameOver() {
+
+        f.remove(gameOverPanel);
+        gameOverPanel.removeKeyListener(gameOverPanel);
+
+        f.add(homePanel);
+        homePanel.addKeyListener(homePanel);
+        homePanel.repaint();
+
+        homePanel.requestFocusInWindow();
+    }
+
+    public static void gameOver() {
+
+        f.remove(gamePanel);
+        gamePanel.removeKeyListener(gamePanel);
+
+        f.add(gameOverPanel);
+        gameOverPanel.addKeyListener(gameOverPanel);
+        gameOverPanel.repaint();
+
+        gameOverPanel.requestFocusInWindow();
     }
 }

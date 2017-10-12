@@ -1,19 +1,13 @@
-import javax.swing.*;
-
-public class GameOverPanel extends JPanel {
-
-    private final int DISPLAY_WIDTH, DISPLAY_HEIGHT;
+public class GameOverPanel extends TextPanel {
 
     public GameOverPanel(final int DISPLAY_WIDTH, final int DISPLAY_HEIGHT) {
 
-        this.DISPLAY_WIDTH = DISPLAY_WIDTH;
-        this.DISPLAY_HEIGHT = DISPLAY_HEIGHT;
-
-        init();
+        super(DISPLAY_WIDTH, DISPLAY_HEIGHT, "Game Over!", "Better luck next time...", "( press any key )");
     }
 
-    private void init() {
+    @Override
+    protected void onAnyKeyPressed() {
 
-
+        GameManager.keyPressedOnGameOver();
     }
 }

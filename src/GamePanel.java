@@ -70,10 +70,27 @@ public class GamePanel extends JComponent implements KeyListener {
 		}
 				
 		initCells();
+	}
 
-		addKeyListener(this);
+	/**
+	 * Re-start and re-initialize the game
+	 */
+	public void restart() {
 
-		repaint();
+		if (gameOver) {
+
+			emptySpots.clear();
+			noFenceSpots.clear();
+			smiley = null;
+			mhos.clear();
+			fences.clear();
+
+			cells = new AbstractCell[ROWS][COLS];
+
+			gameOver = false;
+
+			init();
+		}
 	}
 
 	/**
@@ -198,11 +215,11 @@ public class GamePanel extends JComponent implements KeyListener {
 	}
 
 	/**
-	 * Move the smiley given a key event.
+	 * Update all pieces on the board.
 	 *
 	 * @param e Key event in question
 	 */
-	private void moveSmiley(KeyEvent e) {
+	private void updateGameBoard(KeyEvent e) {
 
 		if (!gameOver) {
 
@@ -213,7 +230,7 @@ public class GamePanel extends JComponent implements KeyListener {
 			switch (c) {
 				case KeyEvent.VK_Q:
 					if (row > 0 && col > 0) {
-						moveSmiley(new Coordinate(row - 1, col - 1));
+						updateGameBoard(new Coordinate(row - 1, col - 1));
 
 					}
 					moveMhos();
@@ -222,14 +239,14 @@ public class GamePanel extends JComponent implements KeyListener {
 				case KeyEvent.VK_W:
 				case KeyEvent.VK_UP:
 					if (row > 0) {
-						moveSmiley(new Coordinate(row - 1, col));
+						updateGameBoard(new Coordinate(row - 1, col));
 					}
 					moveMhos();
 					break;
 
 				case KeyEvent.VK_E:
 					if (row > 0 && col < COLS - 1) {
-						moveSmiley(new Coordinate(row - 1, col + 1));
+						updateGameBoard(new Coordinate(row - 1, col + 1));
 					}
 					moveMhos();
 					break;
@@ -237,7 +254,7 @@ public class GamePanel extends JComponent implements KeyListener {
 				case KeyEvent.VK_A:
 				case KeyEvent.VK_LEFT:
 					if (col > 0) {
-						moveSmiley(new Coordinate(row, col - 1));
+						updateGameBoard(new Coordinate(row, col - 1));
 					}
 					moveMhos();
 					break;
@@ -249,14 +266,14 @@ public class GamePanel extends JComponent implements KeyListener {
 				case KeyEvent.VK_D:
 				case KeyEvent.VK_RIGHT:
 					if (col < COLS - 1) {
-						moveSmiley(new Coordinate(row, col + 1));
+						updateGameBoard(new Coordinate(row, col + 1));
 					}
 					moveMhos();
 					break;
 
 				case KeyEvent.VK_Z:
 					if (col > 0 && row < ROWS - 1) {
-						moveSmiley(new Coordinate(row + 1, col - 1));
+						updateGameBoard(new Coordinate(row + 1, col - 1));
 					}
 					moveMhos();
 					break;
@@ -264,14 +281,14 @@ public class GamePanel extends JComponent implements KeyListener {
 				case KeyEvent.VK_X:
 				case KeyEvent.VK_DOWN:
 					if (row < ROWS - 1) {
-						moveSmiley(new Coordinate(row + 1, col));
+						updateGameBoard(new Coordinate(row + 1, col));
 					}
 					moveMhos();
 					break;
 
 				case KeyEvent.VK_C:
 					if (row < ROWS - 1 && col < COLS - 1) {
-						moveSmiley(new Coordinate(row + 1, col + 1));
+						updateGameBoard(new Coordinate(row + 1, col + 1));
 					}
 					moveMhos();
 					break;
@@ -281,6 +298,8 @@ public class GamePanel extends JComponent implements KeyListener {
 					break;
 			}
 		}
+
+		repaint();
 	}
 
 	/**
@@ -290,9 +309,7 @@ public class GamePanel extends JComponent implements KeyListener {
 
 		Coordinate c = getRandomJunpPosition();
 
-		moveSmiley(c);
-
-		repaint();
+		updateGameBoard(c);
 	}
 
 	/**
@@ -300,7 +317,7 @@ public class GamePanel extends JComponent implements KeyListener {
 	 *
 	 * @param c New coordinate to move to
 	 */
-	private void moveSmiley(final Coordinate c) {
+	private void updateGameBoard(final Coordinate c) {
 
 		final int sx = c.getX(), sy = c.getY();
 
@@ -315,8 +332,6 @@ public class GamePanel extends JComponent implements KeyListener {
 			smiley.move(c);
 			cells[sx][sy] = smiley;
 		}
-
-		repaint();
 	}
 
 	/**
@@ -345,8 +360,6 @@ public class GamePanel extends JComponent implements KeyListener {
 				else {
 					moveDiagonally(i, mho);
 				}
-
-				repaint();
 			}
 		}
 	}
@@ -487,12 +500,9 @@ public class GamePanel extends JComponent implements KeyListener {
 	
 	private void gameOver() {
 
-		System.out.println("Game Over. You Lose!");
 		gameOver = true;
-		final Coordinate smileyPosition = smiley.getPosition();
-		cells[smileyPosition.getX()][smileyPosition.getY()] = null;
-		smiley = null;
-		removeKeyListener(this);
+
+		GameManager.gameOver();
 	}
 
 	/**
@@ -530,8 +540,8 @@ public class GamePanel extends JComponent implements KeyListener {
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
-		moveSmiley(e);
-		repaint();
+
+		updateGameBoard(e);
 	}
 	
 	@Override public void keyReleased(KeyEvent e) { }
@@ -548,8 +558,6 @@ public class GamePanel extends JComponent implements KeyListener {
 		g2.setColor(Color.BLACK);
 		drawGrid(g2);
 		drawCells(g2);
-
-		repaint();
 	}
 
 	/**
