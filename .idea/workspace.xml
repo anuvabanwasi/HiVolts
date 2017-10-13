@@ -10,29 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d07e86ed-232c-4a8b-9f05-437b5793312d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/HiVolts_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/Cell.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/Display.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/Main.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/production/HiVolts/AbstractCell.class" afterPath="$PROJECT_DIR$/bin/production/HiVolts/AbstractCell.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/production/HiVolts/Coordinate.class" afterPath="$PROJECT_DIR$/bin/production/HiVolts/Coordinate.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/production/HiVolts/Fence.class" afterPath="$PROJECT_DIR$/bin/production/HiVolts/Fence.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/production/HiVolts/GameManager.class" afterPath="$PROJECT_DIR$/bin/production/HiVolts/GameManager.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/artifacts/HiVolts_jar/HiVolts.jar" afterPath="$PROJECT_DIR$/bin/artifacts/HiVolts_jar/HiVolts.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/production/HiVolts/GamePanel.class" afterPath="$PROJECT_DIR$/bin/production/HiVolts/GamePanel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/production/HiVolts/Mho.class" afterPath="$PROJECT_DIR$/bin/production/HiVolts/Mho.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/production/HiVolts/Smiley.class" afterPath="$PROJECT_DIR$/bin/production/HiVolts/Smiley.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/production/HiVolts/TextPanel.class" afterPath="$PROJECT_DIR$/bin/production/HiVolts/TextPanel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README" afterPath="$PROJECT_DIR$/README" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AbstractCell.java" afterPath="$PROJECT_DIR$/src/AbstractCell.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Coordinate.java" afterPath="$PROJECT_DIR$/src/Coordinate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Fence.java" afterPath="$PROJECT_DIR$/src/Fence.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GameManager.java" afterPath="$PROJECT_DIR$/src/GameManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GamePanel.java" afterPath="$PROJECT_DIR$/src/GamePanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Mho.java" afterPath="$PROJECT_DIR$/src/Mho.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Smiley.java" afterPath="$PROJECT_DIR$/src/Smiley.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TextPanel.java" afterPath="$PROJECT_DIR$/src/TextPanel.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -46,8 +26,8 @@
       <file leaf-file-name="GamePanel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GamePanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="25" column="28" lean-forward="true" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
+            <state relative-caret-position="374">
+              <caret line="38" column="52" lean-forward="true" selection-start-line="38" selection-start-column="52" selection-end-line="38" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -793,8 +773,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GamePanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="25" column="28" lean-forward="true" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
+        <state relative-caret-position="374">
+          <caret line="38" column="52" lean-forward="true" selection-start-line="38" selection-start-column="52" selection-end-line="38" selection-end-column="52" />
           <folding />
         </state>
       </provider>

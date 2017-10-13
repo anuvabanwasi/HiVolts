@@ -24,7 +24,7 @@ public class GamePanel extends JComponent implements KeyListener {
 		COLS = 12;
 	
 	private static final int
-		NUM_OF_MHOS = 1,
+		NUM_OF_MHOS = 12,
 		NUM_OF_INTERIOR_FENCES = 20;
 	
 	private final int
