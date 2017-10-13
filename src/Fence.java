@@ -1,5 +1,6 @@
-
 /**
+ * Cell which is a fence.
+ *
  * @author Quintin Dwight
  */
 public class Fence extends AbstractCell {

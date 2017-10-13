@@ -1,9 +1,10 @@
 import javax.swing.*;
 
 /**
- * Creates the JFrame and initializes all of the components for the game
+ * Creates the JFrame and initializes all of the components for the game.
+ * Handles switching frames from important game events.
  *
- * @author Quintin
+ * @author Quintin Dwight
  */
 public class GameManager {
 

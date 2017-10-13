@@ -24,7 +24,7 @@ public class GamePanel extends JComponent implements KeyListener {
 		COLS = 12;
 	
 	private static final int
-		NUM_OF_MHOS = 12,
+		NUM_OF_MHOS = 1,
 		NUM_OF_INTERIOR_FENCES = 20;
 	
 	private final int
@@ -59,7 +59,7 @@ public class GamePanel extends JComponent implements KeyListener {
 
 		setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
 
-		//Initialize empty cells
+		// Initialize empty and no fence spots ignoring outer fence because they will always be taken
 		for (int x = 1; x < COLS-1; x++) {
 			for (int y = 1; y < ROWS-1; y++) {
 				emptySpots.add(new Coordinate(x, y));
@@ -75,16 +75,19 @@ public class GamePanel extends JComponent implements KeyListener {
 	 */
 	public void restart() {
 
+		// Clear and reset all arrays
 		emptySpots.clear();
 		noFenceSpots.clear();
 		smiley = null;
 		mhos.clear();
 		fences.clear();
 
+		// Re-initialize 2D array
 		cells = new AbstractCell[ROWS][COLS];
 
 		gameOver = false;
 
+		// Initialize which creates all game items
 		init();
 	}
 
@@ -117,13 +120,13 @@ public class GamePanel extends JComponent implements KeyListener {
 	 */
 	private void initExteriorFences() {
 
-		for(int i = 0; i < COLS; i++) {
+		for (int i = 0; i < COLS; i++) {
 			cells[0][i] = createFence(new Coordinate(0 , i));
 
 			cells[ROWS-1][i] = createFence(new Coordinate(ROWS-1, i));
 		}
 		
-		for(int i = 0; i < ROWS; i++) {
+		for (int i = 0; i < ROWS; i++) {
 			cells[i][0] = createFence(new Coordinate(i, 0));
 
 			cells[i][ROWS-1] = createFence(new Coordinate(i, ROWS-1));
@@ -206,7 +209,7 @@ public class GamePanel extends JComponent implements KeyListener {
 	}
 
 	/**
-	 * Update all pieces on the board.
+	 * Update all pieces on the board from a key event.
 	 *
 	 * @param e Key event in question
 	 */
@@ -221,7 +224,7 @@ public class GamePanel extends JComponent implements KeyListener {
 			switch (c) {
 				case KeyEvent.VK_Q:
 					if (row > 0 && col > 0) {
-						updateGameBoard(new Coordinate(row - 1, col - 1));
+						moveSmiley(new Coordinate(row - 1, col - 1));
 
 					}
 					moveMhos();
@@ -230,14 +233,14 @@ public class GamePanel extends JComponent implements KeyListener {
 				case KeyEvent.VK_W:
 				case KeyEvent.VK_UP:
 					if (row > 0) {
-						updateGameBoard(new Coordinate(row - 1, col));
+						moveSmiley(new Coordinate(row - 1, col));
 					}
 					moveMhos();
 					break;
 
 				case KeyEvent.VK_E:
 					if (row > 0 && col < COLS - 1) {
-						updateGameBoard(new Coordinate(row - 1, col + 1));
+						moveSmiley(new Coordinate(row - 1, col + 1));
 					}
 					moveMhos();
 					break;
@@ -245,7 +248,7 @@ public class GamePanel extends JComponent implements KeyListener {
 				case KeyEvent.VK_A:
 				case KeyEvent.VK_LEFT:
 					if (col > 0) {
-						updateGameBoard(new Coordinate(row, col - 1));
+						moveSmiley(new Coordinate(row, col - 1));
 					}
 					moveMhos();
 					break;
@@ -257,14 +260,14 @@ public class GamePanel extends JComponent implements KeyListener {
 				case KeyEvent.VK_D:
 				case KeyEvent.VK_RIGHT:
 					if (col < COLS - 1) {
-						updateGameBoard(new Coordinate(row, col + 1));
+						moveSmiley(new Coordinate(row, col + 1));
 					}
 					moveMhos();
 					break;
 
 				case KeyEvent.VK_Z:
 					if (col > 0 && row < ROWS - 1) {
-						updateGameBoard(new Coordinate(row + 1, col - 1));
+						moveSmiley(new Coordinate(row + 1, col - 1));
 					}
 					moveMhos();
 					break;
@@ -272,14 +275,14 @@ public class GamePanel extends JComponent implements KeyListener {
 				case KeyEvent.VK_X:
 				case KeyEvent.VK_DOWN:
 					if (row < ROWS - 1) {
-						updateGameBoard(new Coordinate(row + 1, col));
+						moveSmiley(new Coordinate(row + 1, col));
 					}
 					moveMhos();
 					break;
 
 				case KeyEvent.VK_C:
 					if (row < ROWS - 1 && col < COLS - 1) {
-						updateGameBoard(new Coordinate(row + 1, col + 1));
+						moveSmiley(new Coordinate(row + 1, col + 1));
 					}
 					moveMhos();
 					break;
@@ -290,6 +293,7 @@ public class GamePanel extends JComponent implements KeyListener {
 			}
 		}
 
+		// No mhos means that we won!
 		if (mhos.size() == 0) GameManager.youWin();
 
 		repaint();
@@ -302,7 +306,7 @@ public class GamePanel extends JComponent implements KeyListener {
 
 		Coordinate c = getRandomJunpPosition();
 
-		updateGameBoard(c);
+		moveSmiley(c);
 	}
 
 	/**
@@ -310,7 +314,7 @@ public class GamePanel extends JComponent implements KeyListener {
 	 *
 	 * @param newSmileyPosition New coordinate of smiley
 	 */
-	private void updateGameBoard(final Coordinate newSmileyPosition) {
+	private void moveSmiley(final Coordinate newSmileyPosition) {
 
 		final int sx = newSmileyPosition.x, sy = newSmileyPosition.y;
 
@@ -367,7 +371,10 @@ public class GamePanel extends JComponent implements KeyListener {
 		final Coordinate mhoPosition = mho.getPosition(), smileyPosition = smiley.getPosition();
 		Coordinate newPosition = new Coordinate(mhoPosition.x, mhoPosition.y);
 
+		// If we are in the same column then move towards player
 		if ( vertical) newPosition.x += mhoPosition.x < smileyPosition.x ? 1 : -1;
+		// If we are not in the same column, we are in the same row given the invocation of the function,
+		// so move towards the player here.
 		if (!vertical) newPosition.y += mhoPosition.y < smileyPosition.y ? 1 : -1;
 
 		moveMho(mho, mhoIndex, newPosition);
@@ -375,34 +382,53 @@ public class GamePanel extends JComponent implements KeyListener {
 
 	/**
 	 * Attempt to move the mho diagonally.
+	 * First pass does not move onto fences, but if no spots can be found then we do another pass and move onto fences.
 	 *
 	 * @param mhoIndex Index of the mho in the array
 	 * @param mho Mho to move
-	 * @param careful Whether or not to be careful
+	 * @param careful Whether or not to not move onto squares with fences
 	 */
 	private void moveMhoDiagonally(final int mhoIndex, Mho mho, final boolean careful) {
 
 		final Coordinate smileyPosition = smiley.getPosition(), mhoPosition = mho.getPosition();
 
-		Coordinate targetPosition = new Coordinate(mhoPosition.x, mhoPosition.y);
-
 		// Difference between x and y coordinates
-		int dx = smileyPosition.x - mhoPosition.x, dy = smileyPosition.y - mhoPosition.y;
+		final int dx = smileyPosition.x - mhoPosition.x, dy = smileyPosition.y - mhoPosition.y;
 
-		if (dx > 0)
-			targetPosition.x += 1;
-		else if (dx < 0)
-			targetPosition.x -= 1;
+		/* Try to move diagonally */
 
-		if (dy > 0)
-			targetPosition.y += 1;
-		else if (dy < 0)
-			targetPosition.y -= 1;
+		Coordinate targetPosition = new Coordinate(mhoPosition.x, mhoPosition.y);
+		// Move towards smiley in the x direction based on difference
+		targetPosition.x += dx > 0 ? 1 : -1;
+		// Move towards smiley in the y direction based on difference
+		targetPosition.y += dy > 0 ? 1 : -1;
 
-		if (cells[targetPosition.x][targetPosition.y] == null || !careful) {
+		// Check if square to move to is empty. If we are not in careful mode,
+		// which is the second pass, then we try to kill ourselves on electric fence.
+		AbstractCell targetCell = cells[targetPosition.x][targetPosition.y];
+		if ((careful && targetCell == null) || (!careful && targetCell instanceof Fence)) {
 			moveMho(mho, mhoIndex, targetPosition);
 		} else {
-			moveMhoDiagonally(mhoIndex, mho, false);
+
+			/* Try just horizontal or vertical movement to move closer based on difference */
+
+			final int adx = Math.abs(dx), ady = Math.abs(dy);
+			if (adx >= ady) {
+				// Move horizontally if x distance is greater than or equal to y distance
+				targetPosition = new Coordinate(mhoPosition.x + (dx > 0 ? 1 : -1), mhoPosition.y);
+			} else if (adx <= ady) {
+				// Move vertically if x distance is less than or equal to y distance
+				targetPosition = new Coordinate(mhoPosition.x, mhoPosition.y + (dy > 0 ? 1 : -1));
+			}
+
+			// If we are careful, try to move onto empty space. Else, go to un-careful mode.
+			// If we are not, try to move onto fence. Else, do not move.
+			targetCell = cells[targetPosition.x][targetPosition.y];
+			if ((careful && targetCell == null) || (!careful && targetCell instanceof Fence)) {
+				moveMho(mho, mhoIndex, targetPosition);
+			} else if (careful) {
+				moveMhoDiagonally(mhoIndex, mho, false);
+			}
 		}
 	}
 
@@ -440,6 +466,7 @@ public class GamePanel extends JComponent implements KeyListener {
 
 		final Coordinate mhoPosition = mho.getPosition();
 
+		// Get cell at target location
 		AbstractCell movingToCell = cells[newPosition.x][newPosition.y];
 
 		if (movingToCell == null) {

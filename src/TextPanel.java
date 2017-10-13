@@ -17,7 +17,7 @@ public class TextPanel extends JPanel implements KeyListener {
 
     protected static final Font BIG_FONT = new Font("Verdana", Font.PLAIN, 60), SMALL_FONT = new Font("Verdana", Font.PLAIN, 20);
 
-    protected static final int TEXT_SPACING = 32;
+    protected static final int TEXT_SPACING = 50;
 
     public TextPanel(final int DISPLAY_WIDTH, final int DISPLAY_HEIGHT, final String TOP_TEXT, final String MIDDLE_TEXT, final String BOTTOM_TEXT) {
 
@@ -36,6 +36,11 @@ public class TextPanel extends JPanel implements KeyListener {
         setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
     }
 
+    /**
+     * Draws three lines of text.
+     *
+     * @param g Graphics object used to draw
+     */
     @Override
     public void paintComponent(Graphics g) {
 
@@ -47,7 +52,7 @@ public class TextPanel extends JPanel implements KeyListener {
 
         g2.fillRect(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
 
-        // Create big and small fonts as well as getting their metrics
+        // Create big and small fonts as well as getting their metrics (to get size of strings in order to center)
         final FontMetrics bigFontMetrics = g2.getFontMetrics(BIG_FONT), smallFontMetrics = g2.getFontMetrics(SMALL_FONT);
 
         g2.setColor(Color.WHITE);

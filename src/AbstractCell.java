@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -7,6 +6,9 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
+ * Represents a cell of the HiVolts game panel grid.
+ * Each cell has a coordinate which is the (row,column) of the cell in the grid.
+ *
  * @author Quintin Dwight
  * @author Anuva Banwasi
  */
@@ -28,7 +30,7 @@ public abstract class AbstractCell {
 	}
 
 	/**
-	 * Draw the image
+	 * Draws the cell and its corresponding image in the grid.
 	 *
 	 * @param g2 Graphics object used to draw
 	 * @param X_OFFSET X position in the 2D array

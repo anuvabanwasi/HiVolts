@@ -1,5 +1,6 @@
-
 /**
+ * Cell which is a mho.
+ *
  * @author Quintin Dwight
  */
 public class Mho extends AbstractCell {

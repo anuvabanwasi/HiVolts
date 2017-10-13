@@ -1,41 +1,58 @@
-﻿HiVolts ReadMe
+﻿==============
+HiVolts ReadMe
+==============
 
-
-Introduction/Requirements: The Hivolts project as described in paleyontology.com is a 1970s game with a grid which can have a Smiley, Mhos and electric fences. The objective of the game is to eliminate all the Mhos before the Smiley gets eaten by Mhos or electric fences. There are rules on how Mhos and the Smiley can move between the cells on the grid. 
+Introduction/Requirements
+--------------------------------------------------------------------------------------------------------
+The HiVolts project as described in paleyontology.com is a 1970s game with a grid which can have a Smiley, Mhos and electric fences. The objective of the game is to eliminate all the Mhos before the Smiley gets eaten by Mhos or electric fences. There are rules on how Mhos and the Smiley can move between the cells on the grid.
 Detailed requirements: http://paleyontology.com/AP_CS/hivolts/
 
 
-Team: Anuva Banwasi and Quintin Dwight
+Team
+--------------------------------------------------------------------------------------------------------
+Anuva Banwasi and Quintin Dwight, Palo Alto High School, CA
 
 
-Usage: 
+Usage
+--------------------------------------------------------------------------------------------------------
 1. Download the executable hivolts.jar jar file from https://github.com/anuvabanwasi/HiVolts to a computer that has java installed
-2. Open command line terminal and run the below commands on the command line
-   1. 1. cd <path to where jar file is downloaded>
-   2. 2. java - jar hivolts.jar
+2. Open command line terminal and run the below commands on the command line OR double click to run in file browser
+   1. cd <path to where jar file is downloaded>
+   2. java -jar hivolts.jar
 
 
-What does the application do?  
-The program consists of 10 java classes: AbstractCell, Coordinate, Fence, GameManager, GameOverPanel, GamePanel, HomePanel, Main, Mho, Smiley.
-
+What does the application do?
+--------------------------------------------------------------------------------------------------------
+The program consists of 12 java classes: AbstractCell, Coordinate, Fence, GameManager, GameOverPanel, GamePanel, HomePanel, Main, Mho, Smiley, TextPanel and YouWinPanel.
 
 The Main class consists of the main method that initializes the GameManager
-The GameManager class Creates the JFrame and initializes all of the components for the game
+
+The GameManager class Creates the JFrame and initializes all of the components for the game including HomePanel, GamePanel, GameOverPanel and YouWinPanel.
+
 The GamePanel class draws the game field and holds logic for game pieces. This is the critical class that implements the majority of the Game Logic using KeyListener, KeyEvents, ArrayLists and 2D Arrays to map function keys to events and draw and move Smiley & Mhos. One important note is that we do not retry to keep drawing the board till there is no overlap. We keep track of all the cells that are already allocated and try to randomly allocate free cells to Mhos, Smiley and Electric Fence. In addition we employ 2D Arrays in some effective algorithms to move, jump, kill Smiley or Mhos as applicable. Our extensive testing shows that we have implemented all requirements of the game. Although we did think of using ArrayLists for our game logic we settled on 2D arrays since we could use the Row and Column concept of 2D arrays to effectively decide how to move the characters. Using an ArrayList would have made this overly complicated since we would have to keep track of the index of the ArrayList and add/delete the index. Adding or deleting indexes of ArrayList would expose the risk of buggy code and hard to keep track of the exact state of the game at any given moment.
 
-
 AbstractCell is the data structure that corresponds to each Cell in the Grid. It has methods that allows the program to know the Coordinate of each Cell. AbstractCell also contains the important draw Image method.
+
 Coordinate class holds the x and y position of each cell.
-The rest of the classes Fence, Mho, Smiley are mostly self explanatory. They are classes that represent an Electric Fence, Mho and Smiley respectively.  
+
+The HomePanel class is designed so we can in future include instructions for the Game. For now it asks the user to press any key to continue.
+
+The TextPanel class Displays three lines of centered text. The first line is bigger than all of the others, like a header.
+
+The YouWin Panel extends TextPanel class and is called when Smiley wins the Game.
+
+The GameOver Panel is called when Smiley gets eaten and loses the game.
+
+The rest of the classes Fence, Mho, Smiley are mostly self explanatory. They are classes that represent an Electric Fence, Mho and Smiley respectively.
 
 
-
-
-What does the application does not do?
-Since the application implements all the requirements of the specifications of the game the one area which we could do is maybe go back and refactor some parts of the code such as maybe a better way to integrate the HomePanel, GamePanel and GameOverPanel so instead of having different classes for each function based on the what is needed dynamically the program can decide what to do - Draw Home, Game or GameOver based on the state of the game.
+What does the application not do?
+--------------------------------------------------------------------------------------------------------
+Since the application implements all the requirements of the specifications of the game the one area which we could do is maybe go back and refactor some parts of the code such as maybe a better way to integrate the HomePanel, GamePanel and GameOverPanel so instead of having different classes for each function based on the what is needed, dynamically the program can decide what to do - Draw Home, Game, GameOver or YouWin based on the state of the game.
 
 
 Projects Goals and Milestones
+--------------------------------------------------------------------------------------------------------
 We divided up the project into the following phases:
 1) Planning/Research - 0.5 weeks - Sep 18th to Sept 20th
 2) Brainstorm Ideas/Design/Plan - 0.5 Weeks - Sep 21st to Sep 24th
@@ -49,8 +66,10 @@ We were mostly able to follow the project plan above. Since till Oct 10th we wer
 
 
 Learnings
-We learned how to work on a team and coordinate with each other. From the outset we decided who will work on what parts of the game and we communicated with each other on each step of the way. We also made sure to check in our changes to Git at the end of the day so the next day we could pick up where we left off by syncing our code. Instead of using 20 Mhos and 12 Electric Fences we started with just 2 electric fences and 2 Mhos so we could test all the different combinations of moves and countermoves. This approach allowed us to find bugs and fix them at the same time we were implementing the logic. For example we first implemented the vertical Mhos movement towards Smiley and tested that thoroughly before we went on to horizontal movement. The most complicated part of the game was to avoid Mhos overlapping against each other especially if they were juxtaposed with each other. We solved this problem by checking in order of movement whether there is an existing Mho before moving it. GamePanel is a rather large class so in a future iteration we could break it up into two or three classes.
+--------------------------------------------------------------------------------------------------------
+We learned how to work on a team and coordinate with each other. From the outset we decided who will work on what parts of the game and we communicated with each other on each step of the way. We also made sure to check in our changes to Git at the end of the day so the next day we could pick up where we left off by syncing our code. Instead of using 20 Mhos and 12 Electric Fences we started with just 2 electric fences and 2 Mhos so we could test all the different combinations of moves and countermoves. This approach allowed us to find bugs and fix them at the same time we were implementing the logic. For example we first implemented the vertical Mhos movement towards Smiley and tested that thoroughly before we went on to horizontal movement. The most complicated part of the game was to avoid Mhos overlapping against each other especially if they were juxtaposed with each other. We solved this problem by checking in order of movement whether there is an existing Mho before moving it. GamePanel is a rather large class so in a future iteration we could break it up into two or three classes. We learned how to use the ThreadLocalRandom class to randomly get an integer between two numbers. We also learned to use 2D arrays effectively to design and implement the core logic of the game.
 
 
 Acknowledgements
+--------------------------------------------------------------------------------------------------------
 We would like to thank paleyontology.com for the ideas on the Conway Game of Life. Using that we were able to get started on the Grid and Cells of the Grid. We would also like to Thank Mr. Kuszmaul for having us do the Flag project before this, so for the HiVolts we knew in advance how to use Java Swing and AWT Panels to set up the application.

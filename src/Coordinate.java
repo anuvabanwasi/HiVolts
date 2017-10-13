@@ -1,9 +1,10 @@
-
 /**
+ * Represents the coordinate of each cell.
+ * Each coordinate is identified by the row and column of the cell.
+ *
  * @author Quintin Dwight
  * @author Anuva Banwasi
  */
-
 public class Coordinate {
 
     public int x, y;
