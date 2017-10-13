@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d07e86ed-232c-4a8b-9f05-437b5793312d" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/YouWinPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/production/HiVolts/GameManager.class" afterPath="$PROJECT_DIR$/bin/production/HiVolts/GameManager.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/production/HiVolts/GamePanel.class" afterPath="$PROJECT_DIR$/bin/production/HiVolts/GamePanel.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GameManager.java" afterPath="$PROJECT_DIR$/src/GameManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GamePanel.java" afterPath="$PROJECT_DIR$/src/GamePanel.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,11 +21,10 @@
       <file leaf-file-name="GamePanel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GamePanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="398" column="19" lean-forward="true" selection-start-line="398" selection-start-column="19" selection-end-line="398" selection-end-column="19" />
+            <state relative-caret-position="88">
+              <caret line="44" column="4" lean-forward="true" selection-start-line="44" selection-start-column="4" selection-end-line="44" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#GamePanel#0;class#GamePanel#0" expanded="false" />
                 <element signature="method#createMho#0;class#GamePanel#0" expanded="false" />
                 <element signature="method#createFence#0;class#GamePanel#0" expanded="false" />
                 <element signature="method#getRandomPlacePosition#0;class#GamePanel#0" expanded="false" />
@@ -31,6 +33,16 @@
                 <element signature="method#drawCells#0;class#GamePanel#0" expanded="false" />
                 <element signature="method#drawGrid#0;class#GamePanel#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="YouWinPanel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/YouWinPanel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="16" lean-forward="true" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -48,8 +60,8 @@
       <file leaf-file-name="GameManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1">
-              <caret line="0" column="21" lean-forward="false" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
+            <state relative-caret-position="1043">
+              <caret line="116" column="59" lean-forward="true" selection-start-line="116" selection-start-column="59" selection-end-line="116" selection-end-column="59" />
               <folding />
             </state>
           </provider>
@@ -58,8 +70,8 @@
       <file leaf-file-name="HomePanel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/HomePanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="5" lean-forward="false" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+            <state relative-caret-position="180">
+              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="16" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -160,10 +172,11 @@
         <option value="$PROJECT_DIR$/src/TextPanel.java" />
         <option value="$PROJECT_DIR$/src/HomePanel.java" />
         <option value="$PROJECT_DIR$/src/GameOverPanel.java" />
-        <option value="$PROJECT_DIR$/src/GameManager.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/Coordinate.java" />
         <option value="$PROJECT_DIR$/src/AbstractCell.java" />
+        <option value="$PROJECT_DIR$/src/YouWinPanel.java" />
+        <option value="$PROJECT_DIR$/src/GameManager.java" />
         <option value="$PROJECT_DIR$/src/GamePanel.java" />
       </list>
     </option>
@@ -398,14 +411,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="12" lean-forward="false" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/apcs/hivolts/Cell.java" />
     <entry file="file://$PROJECT_DIR$/README">
       <provider selected="true" editor-type-id="text-editor">
@@ -447,7 +452,6 @@
           <caret line="221" column="0" lean-forward="true" selection-start-line="221" selection-start-column="0" selection-end-line="221" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#GamePanel#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createMho#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createFence#0;class#GamePanel#0" expanded="false" />
             <element signature="method#getRandomPlacePosition#0;class#GamePanel#0" expanded="false" />
@@ -465,7 +469,6 @@
           <caret line="196" column="16" lean-forward="true" selection-start-line="196" selection-start-column="16" selection-end-line="197" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#GamePanel#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createMho#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createFence#0;class#GamePanel#0" expanded="false" />
             <element signature="method#getRandomPlacePosition#0;class#GamePanel#0" expanded="false" />
@@ -525,7 +528,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#GamePanel#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createMho#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createFence#0;class#GamePanel#0" expanded="false" />
             <element signature="method#getRandomPlacePosition#0;class#GamePanel#0" expanded="false" />
@@ -595,7 +597,6 @@
           <caret line="43" column="15" lean-forward="true" selection-start-line="43" selection-start-column="15" selection-end-line="43" selection-end-column="15" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#GamePanel#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createMho#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createFence#0;class#GamePanel#0" expanded="false" />
             <element signature="method#getRandomPlacePosition#0;class#GamePanel#0" expanded="false" />
@@ -632,7 +633,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#GamePanel#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createMho#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createFence#0;class#GamePanel#0" expanded="false" />
             <element signature="method#getRandomPlacePosition#0;class#GamePanel#0" expanded="false" />
@@ -669,7 +669,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#GamePanel#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createMho#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createFence#0;class#GamePanel#0" expanded="false" />
             <element signature="method#getRandomPlacePosition#0;class#GamePanel#0" expanded="false" />
@@ -733,22 +732,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/HomePanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="5" lean-forward="false" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1">
-          <caret line="0" column="21" lean-forward="false" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/TextPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -756,14 +739,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="6" lean-forward="false" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -790,13 +765,44 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/HomePanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="16" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/YouWinPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="16" lean-forward="true" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="6" lean-forward="false" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1043">
+          <caret line="116" column="59" lean-forward="true" selection-start-line="116" selection-start-column="59" selection-end-line="116" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/GamePanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="398" column="19" lean-forward="true" selection-start-line="398" selection-start-column="19" selection-end-line="398" selection-end-column="19" />
+        <state relative-caret-position="88">
+          <caret line="44" column="4" lean-forward="true" selection-start-line="44" selection-start-column="4" selection-end-line="44" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#GamePanel#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createMho#0;class#GamePanel#0" expanded="false" />
             <element signature="method#createFence#0;class#GamePanel#0" expanded="false" />
             <element signature="method#getRandomPlacePosition#0;class#GamePanel#0" expanded="false" />

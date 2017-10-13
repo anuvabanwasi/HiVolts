@@ -10,6 +10,7 @@ public class GameManager {
     private static HomePanel homePanel;
     private static GameOverPanel gameOverPanel;
     private static GamePanel gamePanel;
+    private static YouWinPanel youWinPanel;
     private static JFrame f;
 
     public static void init() {
@@ -33,6 +34,10 @@ public class GameManager {
 
         gameOverPanel = new GameOverPanel(DISPLAY_WIDTH, DISPLAY_HEIGHT);
 
+        youWinPanel = new YouWinPanel(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+
+        f.repaint();
+
         f.setVisible(true);
         f.requestFocusInWindow();
 
@@ -51,7 +56,8 @@ public class GameManager {
         f.add(gamePanel);
         gamePanel.restart();
         gamePanel.addKeyListener(gamePanel);
-        gamePanel.repaint();
+
+        f.repaint();
 
         gamePanel.requestFocusInWindow();
     }
@@ -67,7 +73,8 @@ public class GameManager {
 
         f.add(homePanel);
         homePanel.addKeyListener(homePanel);
-        homePanel.repaint();
+
+        f.repaint();
 
         homePanel.requestFocusInWindow();
     }
@@ -83,8 +90,43 @@ public class GameManager {
 
         f.add(gameOverPanel);
         gameOverPanel.addKeyListener(gameOverPanel);
-        gameOverPanel.repaint();
+
+        f.repaint();
 
         gameOverPanel.requestFocusInWindow();
+    }
+
+    /**
+     * You win, called from the game manager.
+     * Transitions from the game panel to the you win panel.
+     */
+    public static void youWin() {
+
+        f.remove(gamePanel);
+        gamePanel.removeKeyListener(gamePanel);
+
+        f.add(youWinPanel);
+        youWinPanel.addKeyListener(youWinPanel);
+
+        f.repaint();
+
+        youWinPanel.requestFocusInWindow();
+    }
+
+    /**
+     * Called from the you win panel when a key is pressed.
+     * This transitions from there to the home panel.
+     */
+    public static void keyPressedOnYouWin() {
+
+        f.remove(youWinPanel);
+        youWinPanel.removeKeyListener(youWinPanel);
+
+        f.add(homePanel);
+        homePanel.addKeyListener(homePanel);
+
+        f.repaint();
+
+        homePanel.requestFocusInWindow();
     }
 }

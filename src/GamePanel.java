@@ -49,8 +49,6 @@ public class GamePanel extends JComponent implements KeyListener {
 
 		DISPLAY_WIDTH = width;
 		DISPLAY_HEIGHT = height;
-
-		init();
 	}
 
 	/**
@@ -77,20 +75,17 @@ public class GamePanel extends JComponent implements KeyListener {
 	 */
 	public void restart() {
 
-		if (gameOver) {
+		emptySpots.clear();
+		noFenceSpots.clear();
+		smiley = null;
+		mhos.clear();
+		fences.clear();
 
-			emptySpots.clear();
-			noFenceSpots.clear();
-			smiley = null;
-			mhos.clear();
-			fences.clear();
+		cells = new AbstractCell[ROWS][COLS];
 
-			cells = new AbstractCell[ROWS][COLS];
+		gameOver = false;
 
-			gameOver = false;
-
-			init();
-		}
+		init();
 	}
 
 	/**
@@ -105,18 +100,14 @@ public class GamePanel extends JComponent implements KeyListener {
 	 */
 	private void initCells() {
 		
-		// Set Exterior Electric Fences
 		initExteriorFences();
 		
-		// Set Mho Cells
 		for (int i = 0; i < NUM_OF_MHOS; i++) {
 			createMho(getRandomPlacePosition());
 		}
 		
-		// Set Interior Electric Fences
 		initInteriorFences();
 
-		// Set Smiley
 		createSmiley(getRandomPlacePosition());
 	}
 
@@ -299,6 +290,8 @@ public class GamePanel extends JComponent implements KeyListener {
 			}
 		}
 
+		if (mhos.size() == 0) GameManager.youWin();
+
 		repaint();
 	}
 
@@ -315,11 +308,11 @@ public class GamePanel extends JComponent implements KeyListener {
 	/**
 	 * Move the smiley and check if the square will kill the player.
 	 *
-	 * @param c New coordinate to move to
+	 * @param newSmileyPosition New coordinate of smiley
 	 */
-	private void updateGameBoard(final Coordinate c) {
+	private void updateGameBoard(final Coordinate newSmileyPosition) {
 
-		final int sx = c.x, sy = c.y;
+		final int sx = newSmileyPosition.x, sy = newSmileyPosition.y;
 
 		if (cells[sx][sy] instanceof Fence) {
 			gameOver();
@@ -329,7 +322,7 @@ public class GamePanel extends JComponent implements KeyListener {
 			// first reset current cell, then moveMho to next position, assign smiley at that position
 			Coordinate smileyPosition = smiley.getPosition();
 			cells[smileyPosition.x][smileyPosition.y] = null;
-			smiley.move(c);
+			smiley.move(newSmileyPosition);
 			cells[sx][sy] = smiley;
 		}
 	}
