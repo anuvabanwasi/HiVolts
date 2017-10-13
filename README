@@ -17,7 +17,7 @@ Usage
 --------------------------------------------------------------------------------------------------------
 1. Download the executable hivolts.jar jar file from https://github.com/anuvabanwasi/HiVolts to a computer that has java installed
 2. Open command line terminal and run the below commands on the command line OR double click to run in file browser
-   1. cd <path to where jar file is downloaded>
+   1. cd <path to where jar file is downloaded>/bin/artifacts/HiVolts_jar
    2. java -jar hivolts.jar
 
 
