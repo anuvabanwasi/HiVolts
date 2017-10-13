@@ -17,6 +17,13 @@ public abstract class AbstractCell {
 	private Coordinate c;
 	private Image image;
 
+	/**
+	 * Constructor for creating an abstract cell
+	 * @param imagePath String representing path of the image corresponding to either smiley, mho or fence
+	 * @param c Coordinate of the cell
+	 * @param WIDTH Width of cell
+	 * @param HEIGHT Height of cell
+	 */
 	public AbstractCell(String imagePath, Coordinate c, final int WIDTH, final int HEIGHT) {
 
 		this.c = c;
