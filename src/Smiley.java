@@ -2,6 +2,7 @@
  * Cell which is a smiley (the player).
  *
  * @author Quintin Dwight
+ * @author Anuva Banwasi
  */
 public class Smiley extends AbstractCell {
 
