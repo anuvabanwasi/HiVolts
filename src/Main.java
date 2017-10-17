@@ -1,7 +1,7 @@
 /**
  * Main class which initializes the Game Manager
  *
- * @author Anuva
+ * @author Anuva Banwasi
  */
 public class Main {
 

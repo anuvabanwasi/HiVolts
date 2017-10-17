@@ -112,6 +112,7 @@ public class GamePanel extends JComponent implements KeyListener {
 		initInteriorFences();
 
 		createSmiley(getRandomPlacePosition());
+		//testMoveToElectricFence();
 	}
 
 	/**
@@ -604,6 +605,123 @@ public class GamePanel extends JComponent implements KeyListener {
 			X_GRID_OFFSET + (col * (CELL_WIDTH  + CELL_GAP)),
 			Y_GRID_OFFSET + ROWS * (CELL_HEIGHT + CELL_GAP));
 		}
+	}
+	
+	/**
+	 * Tests
+	 * 
+	 */
+	
+	public void testMhoDiesOnFence(){
+		setSmileyForTest(7, 8);
+		setupMhoForTest(7, 3);
+		setupFencesForTest(7, 5);
+	}
+	
+	public void testMhoOnMho(){
+		setSmileyForTest(7, 10);
+		setupMhoForTest(7, 2);
+		setupMhoForTest(7, 3);
+		setupFencesForTest(7, 6);
+	}
+	
+	public void testMoveToMhoAlignDiagonally(){
+		setSmileyForTest(7, 5);
+		setupMhoForTest(3, 4);
+		setupFencesForTest(6, 7);
+		
+		moveSmiley(new Coordinate(6, 5));
+		moveMhos();
+		
+		moveSmiley(new Coordinate(5, 4));
+		moveMhos();
+		
+		if(!gameOver)
+			System.out.println("Error!");
+	}
+	
+	public void testMoveToMhoAlignVertically(){
+		setSmileyForTest(5, 5);
+		setupMhoForTest(3, 4);
+		setupFencesForTest(6, 7);
+		
+		moveSmiley(new Coordinate(5, 4));
+		moveMhos();
+		
+		moveSmiley(new Coordinate(3, 4));
+		moveMhos();
+		
+		if(!gameOver)
+			System.out.println("Error!");
+	}
+	
+	public void testMoveToMhoAlignHorizontally(){
+		setSmileyForTest(3, 7);
+		setupMhoForTest(3, 4);
+		setupFencesForTest(6, 7);
+		
+		moveSmiley(new Coordinate(3, 6));
+		moveMhos();
+		
+		moveSmiley(new Coordinate(3, 5));
+		moveMhos();
+		
+		if(!gameOver)
+			System.out.println("Error!");
+	}
+	
+	public void testMoveToElectricFence(){
+		setSmileyForTest(4, 5);
+		setupMhoForTest(3, 4);
+		setupFencesForTest(6, 6);
+		
+		moveSmiley(new Coordinate(5, 5));
+		
+		if(!gameOver)
+			System.out.println("Error!");
+	}
+	
+	public void testMoveToMho(){
+		setSmileyForTest(5, 5);
+		setupMhoForTest(3, 4);
+		setupFencesForTest(6, 6);
+		
+		moveSmiley(new Coordinate(5, 4));
+		moveMhos();
+		
+		moveSmiley(new Coordinate(4, 4));
+		moveMhos();
+		
+		if(!gameOver)
+			System.out.println("Error!");
+	}
+	
+	public void testMoveToEmptyCell(){
+		setSmileyForTest(4, 5);
+		setupMhoForTest(3, 4);
+		setupFencesForTest(6, 6);
+		
+		moveSmiley(new Coordinate(5, 5));
+		
+		if(gameOver)
+			System.out.println("Error!");
+	}
+	
+	private void setupFencesForTest(int x, int y) {
+	
+		cells[x][y] = new Fence(new Coordinate(x, y), 60, 60);
+	}
+
+	private void setupMhoForTest(int x, int y) {
+
+		cells[x][y] = new Mho(new Coordinate(x, y), 60, 60);
+		mhos.add((Mho)cells[x][y]);
+	}
+	
+	public void setSmileyForTest(int x, int y){
+
+		cells[x][y] = new Smiley(new Coordinate(x, y),60, 60);
+		smiley = (Smiley)cells[x][y];
 	}
 
 }
