@@ -19,16 +19,25 @@ public class Coordinate {
 	public void setY(int y) {
 		this.y = y;
 	}
+	
 
 	/**
-	 * We override the equals method because this is a value class (like a struct).
-	 * Coordinates with the same x and y are treated as equal.
-	 *
-	 * @param obj Other object
-	 * @return Whether or not they are equal
+	 * Override equals and hashcode to check for object equivalence
+	 * https://stackoverflow.com/questions/13134050/when-do-i-need-to-override-equals-and-hashcode-methods
+	 * @author anuva
 	 */
-	@Override public boolean equals(Object obj) {
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + x;
+		result = prime * result + y;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
